@@ -93,19 +93,21 @@ Into this file, we create a layout for welcome page.
     <?php
     echo "<img src='img/MYMAID.png' alt='MYMAID' />";
     ?>
-    <h1>ADMIN OF MYMAID</h1>
-    <p>It display users' details.</p>
+    <h1>USER OF MYMAID</h1>
+    <p>Book the maid you want...</p>
     <br>
     <br>
     <table border="2" cellspacing="8">
             <tr>
-              <th>ID</th>
+              <th>MAID ID</th>
               <th>Profile Picture</th>
               <th>Firstname</th>
               <th>Lastname</th>
               <th>Gender</th>
-              <th>Email</th>
-              <th colspan="2" align="center" >Operation</th>
+              <th>Option</th>
+              <th>Hour(s)</th>
+              <th></th>
+              <!---<th colspan="2" align="center" >Operation</th>--->
             </tr>
 
             <?php
@@ -128,11 +130,17 @@ Into this file, we create a layout for welcome page.
                   <td>".$result['Firstname']."</td>
                   <td>".$result['Lastname']."</td>
                   <td>".$result['Gender']."</td>
-                  <td>".$result['Email']."</td>
-                  <td><a href = 'adminedit.php?ID=$result[ID]' onclick='return checkedit()'> Edit / Update </td>
-                  <td><a href = 'admindelete.php?ID=$result[ID]'onclick='return checkdelete()'> Delete </td>
+                  ";
+                  echo'<td>
+                        <input type="datetime-local"/><br>
+                      </td>';
+                  echo'<td>
+                        <input type="time"/><br>
+                      </td>';
+                  echo"
+                  <td><a href = 'adminedit.php?ID=$result[ID]' onclick='return checkedit()'> BOOKING </td>
                 </tr>
-                ";
+                      ";
               }
             }else{
               echo"No records found";
