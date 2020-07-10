@@ -34,22 +34,39 @@ include_once('adminheader1.php');
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
           <table class="table">
-          	<tr>
-          		<td>First Name</td>
-          		<td><?php echo $fname; ?></td>
-          	</tr>
-          	<tr>
-          		<td>Last Name</td>
-          		<td><?php echo $lname; ?></td>
-          	</tr>
-          	<tr>
-          		<td>Gender</td>
-          		<td><?php echo $gender; ?></td>
-          	</tr>
-          	<tr>
-          		<td>Email</td>
-          		<td><?php echo $email; ?></td>
-          	</tr>
+            <?php
+                include("connection.php");
+                $query = "SELECT * FROM admin where `ID` = ".$_SESSION['id'];
+                $data = mysqli_query($conn, $query);
+                $total = mysqli_num_rows($data);
+
+                if($total != 0)
+                {
+                while($result=mysqli_fetch_assoc($data))
+                {
+                    echo "
+                        <tr>
+                            <td>First Name</td>
+                            <td>".$result['Firstname']."</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td>".$result['Lastname']."</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>".$result['Gender']."</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>".$result['Email']."</td>
+                        </tr>
+                    ";
+                }
+                }else{
+                echo"No records found";
+                }
+            ?>
           </table>
         </div>
 
@@ -57,4 +74,4 @@ include_once('adminheader1.php');
     </div>
 
     </div>
-    </div>
+</div>
