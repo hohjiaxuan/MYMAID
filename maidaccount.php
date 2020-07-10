@@ -7,6 +7,23 @@ include_once('link.php');
 include_once('maidheader1.php');
 include("connection.php");
 
+if($_GET && $_GET["ID"]) {
+    $id = $_GET["ID"];
+    // echo $id;
+
+    $query = "DELETE FROM employment WHERE userID = '$id' ";
+    $data = mysqli_query($conn, $query);
+    if($data)
+    {
+        echo "<script>alert('Record has been Deleted from Database')</script>";
+        ?>
+            <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://127.0.0.1/MYMAID/maidaccount.php">
+            <!-- <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/maiddetail.php"> -->
+        <?php
+    } else{
+        echo "<script>Failed to delete Record from Database</script>";
+    }
+} 
 $query = "SELECT * FROM maid where `ID` = ".$_SESSION['id'];
 $data = mysqli_query($conn, $query);
 $total = mysqli_num_rows($data);
@@ -16,14 +33,15 @@ if($total != 0)
     while($result=mysqli_fetch_assoc($data))
     {
         $fname = $result["Firstname"];
-		$lname = $result["Lastname"];
-		$email = $result["Email"];
-		$gender = $result["Gender"];
+        $lname = $result["Lastname"];
+        $email = $result["Email"];
+        $gender = $result["Gender"];
         
     }
 }else{
     echo"No records found";
 }
+
 
 ?>
 <div id="account">
@@ -89,42 +107,51 @@ if($total != 0)
                     <th>Firstname</th>
                     <th>Lastname</th>
                     <th>Gender</th>
-                    <th>Option</th>
-                    <th>Hour(s)</th>
+                    <th>working time</th>
                     <th></th>
                 </tr>
 
                 <?php
                     include("connection.php");
                     error_reporting(0);
-                    $query = "SELECT * FROM maid ";
+                    
+                    echo $_SESSION['email'];
+                    $query = "SELECT * FROM `employment` WHERE `maidID` = '".$_SESSION['email']."'";
                     $data = mysqli_query($conn, $query);
                     $total = mysqli_num_rows($data);
 
                     if($total != 0)
                     {
+                        $count = 1;
                         while($result=mysqli_fetch_assoc($data))
                         {
-                            echo "
-                                <tr>
-                                <td>".$result['ID']."</td>
-                            ";
-                            echo '<td><img src="'.$result['Pic'].'" width="100"/></td>';
-                            echo "
-                                <td>".$result['Firstname']."</td>
-                                <td>".$result['Lastname']."</td>
-                                <td>".$result['Gender']."</td>
-                            ";
-                            echo'<td>
-                                    <input type="datetime-local"/><br>
-                                </td>';
-                            echo'<td>
-                                    <input type="time"/><br>
-                                </td>';
-                            echo"
-                                <td><a href = 'adminedit.php?ID=$result[ID]' onclick='return checkedit()'> Cancel Bocking </td>
-                                </tr>
-                            ";
+                            $userID = $result['userID'];
+                            $date = $result['date'];
+                            $workStart = $result['work_start_hour'];
+                            $workEnd = $result['work_end_hour'];
+
+                            $query = "SELECT * FROM `user` WHERE `Email` = '".$userID."'";
+                            $data = mysqli_query($conn, $query);
+                            $total = mysqli_num_rows($data);
+                            while($result=mysqli_fetch_assoc($data))
+                            {
+                                echo "
+                                    <tr>
+                                    <td>".($count++)."</td>
+                                ";
+                                echo '<td><img src="'.$result['Pic'].'" width="100"/></td>';
+                                echo "
+                                    <td>".$result['Firstname']."</td>
+                                    <td>".$result['Lastname']."</td>
+                                    <td>".$result['Gender']."</td>
+                                ";
+                                
+                                echo "<td>".$date." from ".$workStart." to ".$workEnd."</td>";
+                                echo"
+                                    <td><a href = 'maidaccount.php?ID=$userID' onclick='return checkedit()'> Cancel Bocking </td>
+                                    </tr>
+                                ";
+                            }
                         }
                     } else{
                         echo"No records found";
