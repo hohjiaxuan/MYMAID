@@ -79,10 +79,12 @@ if($total != 0)
                 ?>
             </table>
         </div>
-        <div class="tab-pane fade in active" id="tab2">
-            <table border="2" cellspacing="8">
+      </div>
+    </div>
+    <div class="tab-pane fade in active" id="tab2" style="height:180px; width:350px; text-align:center;">
+            <table border="1" cellspacing="25" style="table-layout:fixed; text-align:center;" >
                 <tr>
-                    <th>no</th>
+                    <th>No.</th>
                     <th>Profile Picture</th>
                     <th>Firstname</th>
                     <th>Lastname</th>
@@ -130,8 +132,5 @@ if($total != 0)
                 ?>
             </table>
         </div>
-      </div>
-    </div>
-
     </div>
 </div>
