@@ -5,6 +5,25 @@ Into this file, we write a code for display user information.
 <?php
 include_once('link.php');
 include_once('maidheader1.php');
+include("connection.php");
+
+$query = "SELECT * FROM maid where `ID` = ".$_SESSION['id'];
+$data = mysqli_query($conn, $query);
+$total = mysqli_num_rows($data);
+
+if($total != 0)
+{
+    while($result=mysqli_fetch_assoc($data))
+    {
+        $fname = $result["Firstname"];
+		$lname = $result["Lastname"];
+		$email = $result["Email"];
+		$gender = $result["Gender"];
+        
+    }
+}else{
+    echo"No records found";
+}
 
 ?>
 <div id="account">
@@ -12,7 +31,6 @@ include_once('maidheader1.php');
     <div class="card hovercard">
         <div class="card-background">
             <img class="card-bkimg" alt="" src="">
-            <!-- http://lorempixel.com/850/280/people/9/ -->
         </div>
         <div class="useravatar">
             <img alt="" src="img/user.svg">
@@ -33,23 +51,32 @@ include_once('maidheader1.php');
         <div class="well">
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
-          <table class="table">
-          	<tr>
-          		<td>First Name</td>
-          		<td><?php echo $fname; ?></td>
-          	</tr>
-          	<tr>
-          		<td>Last Name</td>
-          		<td><?php echo $lname; ?></td>
-          	</tr>
-          	<tr>
-          		<td>Gender</td>
-          		<td><?php echo $gender; ?></td>
-          	</tr>
-          	<tr>
-          		<td>Email</td>
-          		<td><?php echo $email; ?></td>
-          	</tr>
+        <table class="table">
+            <?php
+                if($total != 0)
+                {
+                    echo "
+                        <tr>
+                            <td>First Name</td>
+                            <td>".$fname."</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td>".$lname."</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>".$gender."</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>".$email."</td>
+                        </tr>
+                    ";
+                }else{
+                    echo"No records found";
+                }
+            ?>
           </table>
         </div>
 
@@ -57,4 +84,4 @@ include_once('maidheader1.php');
     </div>
 
     </div>
-    </div>
+</div>
