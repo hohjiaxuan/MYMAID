@@ -1,34 +1,4 @@
-<!--
-Into this file, we create a layout for welcome page.
--->
 
-<?php
-// include_once('link.php');
-// include_once('adminheader1.php');
-// require_once('connection.php');
-//
-// $id = $_SESSION['id'];
-// $fname = $lname = $email = $gender = '';
-// $sql = "SELECT * FROM admin WHERE ID='$id'";
-// $result = mysqli_query($conn, $sql);
-// if(mysqli_num_rows($result) > 0)
-// {
-// 	while($row = mysqli_fetch_assoc($result))
-// 	{
-// 		$fname = $row["Firstname"];
-// 		$lname = $row["Lastname"];
-// 		$email = $row["Email"];
-// 		$gender = $row["Gender"];
-// 	}
-// }
-
-?>
-<!-- <div class="jumbotron">
-	<center>
-		<h1>Welcome <?php echo $fname." ".$lname; ?></h1>
-
-	</center>
-</div> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,24 +93,29 @@ Into this file, we create a layout for welcome page.
               {
                 echo "
                 <tr>
-                  <td>".$result['ID']."</td>
+                  <td id='maidID' >".$result['ID']."</td>
                   ";
-                  echo '<td><img src="'.$result['Pic'].'" width="100"/></td>';
+                  echo '<td id="Pic" ><img src="'.$result['Pic'].'" width="100"/></td>';
                 echo "
-                  <td>".$result['Firstname']."</td>
-                  <td>".$result['Lastname']."</td>
-                  <td>".$result['Gender']."</td>
+                  <td id='fname' >".$result['Firstname']."</td>
+                  <td id='lname' >".$result['Lastname']."</td>
+                  <td id='gender' >".$result['Gender']."</td>
                   ";
-                  echo'<td>
-                        <input type="datetime-local"/><br>
+                  echo'<td id="date">
+                        <input type="date"/><br>
                       </td>';
-                  echo'<td>
-                        <input type="time"/><br>
-                      </td>';
+                  echo'<td id="time">
+						<input type="time"/>
+						<br>
+						to
+						<br>
+						<input type="time"/>
+					  </td>';
+					  
                   echo"
-                  <td><a href = 'adminedit.php?ID=$result[ID]' onclick='return checkedit()'> BOOKING </td>
-                </tr>
-                      ";
+                  	<td > <a type='button' onclick='save()'> BOOKING </td>
+                	</tr>
+					  ";
               }
             }else{
               echo"No records found";
@@ -150,7 +125,7 @@ Into this file, we create a layout for welcome page.
   </center>
 
 <script>
-function checkdelete()
+function save()
 {
   return Confirm('Are you sure you want to Delete this Record');
 }
@@ -158,3 +133,10 @@ function checkdelete()
 
 </body>
 </html>
+
+<?php
+    function a() {
+        alert ('Record');
+        echo document.getElementById("maidID");
+    }
+	?>
