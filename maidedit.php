@@ -2,11 +2,26 @@
 include("connection.php");
 error_reporting(0);
 $id=$_GET["ID"];
-$fname=$_GET["Firstname"];
-$lname=$_GET["Lastname"];
-$gender=$_GET["Gender"];
-$email=$_GET["Email"];
-$pic=$_GET["Pic"];
+
+if($_GET['submit'])
+{
+  $id=$_GET["ID"];
+  $fname=$_GET["Firstname"];
+  $lname=$_GET["Lastname"];
+  $gender=$_GET["Gender"];
+  $email=$_GET["Email"];
+  $pic=$_GET["Pic"];
+  $query = "UPDATE admin SET ID='$id', Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
+  $data = mysqli_query($conn, $query);
+  if($data)
+  {
+    ?>
+    <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/adminedit.php">
+    <?php
+  }else {
+    echo "Failed to Updated Record";
+  }
+}
  ?>
 
  <html>

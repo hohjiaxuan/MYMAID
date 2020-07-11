@@ -24,8 +24,8 @@ $email = $_SESSION['email'];
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
   	<!-- <li><a href="admindetail.php">MYMAID</a></li> -->
-		<li><a href="maiddetail.php">Maid</a></li>
-		<li><a href="userdetail.php">User</a></li>
+		<li><a href="maid.php">Maid</a></li>
+		<li><a href="user.php">User</a></li>
 		<li><a href="adminaccount.php">Account</a></li>
     <li><a href="adminlogout.php">Logout</a></li>
   </ul>

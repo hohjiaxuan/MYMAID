@@ -99,8 +99,8 @@
                   <td>".$result['Lastname']."</td>
                   <td>".$result['Gender']."</td>
                   <td>".$result['Email']."</td>
-                  <td><a href = 'adminedit.php?ID=$result[ID]' onclick='return checkedit()'> Edit / Update </td>
-                  <td><a href = 'admindelete.php?ID=$result[ID]'onclick='return checkdelete()'> Delete </td>
+                  <td><a href = 'adminedit.php?ID=$result[ID]' onclick='checkedit()'> Edit / Update </td>
+                  <td><a href = 'admindelete.php?ID=$result[ID]'onclick='checkdelete()'> Delete </td>
                 </tr>
                 ";
                 // echo '<td><img src="'.$result['Pic'].'"/></td>';

@@ -27,7 +27,6 @@ if($_GET['submit'])
     echo "Failed to Updated Record";
   }
 }
-
  ?>
 
  <html>
@@ -121,5 +120,3 @@ if($_GET['submit'])
    </form>
  </body>
  </html>
-
-?>

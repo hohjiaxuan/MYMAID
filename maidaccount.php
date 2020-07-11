@@ -95,12 +95,13 @@ if($total != 0)
                         echo"No records found";
                     }
                 ?>
+                
             </table>
         </div>
       </div>
     </div>
     <div class="tab-pane fade in active" id="tab2" style="height:180px; width:350px; text-align:center;">
-            <table border="1" cellspacing="25" style="table-layout:fixed; text-align:center;" >
+            <table border="1" cellspacing="25" style="table-layout:fixed; text-align:center; height:100px; width:850px;">
                 <tr>
                     <th>No.</th>
                     <th>Profile Picture</th>
@@ -154,7 +155,7 @@ if($total != 0)
                             }
                         }
                     } else{
-                        echo"No records found";
+                        echo"        No Records Found";
                     }
                 ?>
             </table>

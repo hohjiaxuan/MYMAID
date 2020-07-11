@@ -46,7 +46,7 @@ if($total != 0)
 
     </div>
 
-        <div class="well">
+    <div class="well">
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
         <table class="table">
@@ -76,10 +76,73 @@ if($total != 0)
                 }
             ?>
           </table>
+          <form action="" method="post">
+            <div style="text-align: center;">      
+                <button style="width:150px; height:85; background-color:#fffbc1; color:#362511; border-color:#362511; font-size:20px; font-weight: bold;" onclick="edit-acc()"> Edit Profile </button>
+            </div>
+            </form>
         </div>
-
       </div>
     </div>
+    <div class="tab-pane fade in active" id="tab2" style="height:450px; width:850px; text-align:center;">
+            <table border="1" cellspacing="25" style="table-layout:fixed; text-align:center; height:100px; width:850px; " >
+                <tr>
+                    <th>No.</th>
+                    <th>Profile Picture</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Gender</th>
+                    <th>working time</th>
+                    <th></th>
+                </tr>
 
+                <?php
+                    include("connection.php");
+                    error_reporting(0);
+                    
+                    echo $_SESSION['email'];
+                    $query = "SELECT * FROM `employment` WHERE `maidID` = '".$_SESSION['email']."'";
+                    $data = mysqli_query($conn, $query);
+                    $total = mysqli_num_rows($data);
+
+                    if($total != 0)
+                    {
+                        $count = 1;
+                        while($result=mysqli_fetch_assoc($data))
+                        {
+                            $userID = $result['userID'];
+                            $date = $result['date'];
+                            $workStart = $result['work_start_hour'];
+                            $workEnd = $result['work_end_hour'];
+
+                            $query = "SELECT * FROM `user` WHERE `Email` = '".$userID."'";
+                            $data = mysqli_query($conn, $query);
+                            $total = mysqli_num_rows($data);
+                            while($result=mysqli_fetch_assoc($data))
+                            {
+                                echo "
+                                    <tr>
+                                    <td>".($count++)."</td>
+                                ";
+                                echo '<td><img src="'.$result['Pic'].'" width="100"/></td>';
+                                echo "
+                                    <td>".$result['Firstname']."</td>
+                                    <td>".$result['Lastname']."</td>
+                                    <td>".$result['Gender']."</td>
+                                ";
+                                
+                                echo "<td>".$date." from ".$workStart." to ".$workEnd."</td>";
+                                echo"
+                                    <td><a href = 'maidaccount.php?ID=$userID' onclick='return checkedit()'> Cancel Bocking </td>
+                                    </tr>
+                                ";
+                            }
+                        }
+                    } else{
+                        echo"  No Records Found";
+                    }
+                ?>
+            </table>
+        </div>
     </div>
     </div>

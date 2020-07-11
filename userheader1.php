@@ -23,6 +23,8 @@ $email = $_SESSION['email'];
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $email;?>
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
+  	<!-- <li><a href="admindetail.php">MYMAID</a></li> -->
+		<li><a href="maiddetail.php">Maid</a></li>
 		<li><a href="useraccount.php">Account</a></li>
     <li><a href="userlogout.php">Logout</a></li>
   </ul>
