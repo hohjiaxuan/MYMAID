@@ -2,14 +2,8 @@
   include("connection.php");
   error_reporting(0);
   $id=$_GET["ID"];
-  // $fname=$_GET["Firstname"];
-  // $lname=$_GET["Lastname"];
-  // $gender=$_GET["Gender"];
-  // $email=$_GET["Email"];
-  // $pic=$_GET["Pic"];
   if($_GET['submit'])
   {
-    // echo "<script>alert('警告：無法在確認之後跳頁');</script>";
     $id=$_GET["ID"];
     $fname=$_GET["Firstname"];
     $lname=$_GET["Lastname"];
@@ -18,8 +12,6 @@
     $password=$_GET["Password"];
     $pic=$_GET["Pic"];
     $query = "INSERT INTO admin (Firstname,Lastname,Gender,Email,Password,Pic) VALUES ('$fname','$lname','$gender','$email','$password','$pic')";
-    // $query = "INSERT INTO admin (ID, Firstname, Lastname, Gender, Email, Password, Pic) VALUES ('$id', '$fname', '$lname', '$gender', '$email', '$password', '$pic')";
-    // $query = "UPDATE admin SET ID='$id', Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Password='$password', Pic='$pic' WHERE ID='$id' ";
     $data = mysqli_query($conn, $query);
     if($data)
     {
@@ -71,7 +63,6 @@
      $query = "SELECT * FROM `admin` WHERE ID=".$id;
      $data = mysqli_query($conn, $query);
      $total = mysqli_num_rows($data);
-     // echo $total;
      while($result=mysqli_fetch_assoc($data))
      {
        $fname=$result['Firstname'];
@@ -126,4 +117,3 @@
  </body>
  </html>
 
-?>

@@ -10,8 +10,9 @@ $id=$_GET["ID"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
     $pic=$_GET["Pic"];
-    // $worktype=$
-    $query = "UPDATE maid SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic', Worktype='$worktype' WHERE ID='$id' ";
+    $worktype=$_GET["Worktype"];
+    $sUPDATE `maid` SET `Firstname` = "JIA", `Lastname`= "XUAN", `Gender`= "Female", `Email` = "jia@gmail.com", `Password` = "202cb962ac59075b964b07152d234b70", `Pic` = "img/customer-b.jpg", `Worktype`= "0"
+    $query = "UPDATE `maid` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic', Worktype='$worktype' WHERE ID='$id' ";
     echo $query;
     $data = mysqli_query($conn, $query);
     
@@ -80,27 +81,27 @@ $id=$_GET["ID"];
        </tr>
        <tr>
          <td>Firstname</td>
-         <td><input type="text" value="<?php echo "$fname" ?>" name="fname" required></td>
+         <td><input type="text" value="<?php echo "$fname" ?>" name="Firstname" required></td>
        </tr>
        <tr>
          <td>Lastname</td>
-         <td><input type="text" value="<?php echo "$lname" ?>" name="lname" required></td>
+         <td><input type="text" value="<?php echo "$lname" ?>" name="Lastname" required></td>
        </tr>
        <tr>
          <td>Gender</td>
-         <td><input type="text" value="<?php echo "$gender" ?>" name="gender" required></td>
+         <td><input type="text" value="<?php echo "$gender" ?>" name="Gender" required></td>
        </tr>
        <tr>
          <td>Work Type</td>
-         <td><input type="text" value="<?php echo "$worktype" ?>" name="worktype" required></td>
+         <td><input type="text" value="<?php echo "$worktype" ?>" name="Worktype" required></td>
        </tr>
        <tr>
          <td>Email</td>
-         <td><input type="text" value="<?php echo "$email" ?>" name="email" required></td>
+         <td><input type="text" value="<?php echo "$email" ?>" name="Email" required></td>
        </tr>
        <tr>
          <td>Profile Picture</td>
-         <td><input type="file" name="pic" class="form-control" id="pic" accept="image/*" required></td>
+         <td><input type="file" name="Pic" class="form-control" id="pic" accept="image/*" required></td>
        </tr>
        <tr>
          <td colspan="2" align="center"><input type="submit" id="btn" name="submit" value="Update Details"></a></td>

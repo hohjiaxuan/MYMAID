@@ -27,7 +27,7 @@ if($_GET && $_GET["ID"]) {
         echo "<script>Failed to delete Record from Database</script>";
     }
 } 
-$query = "SELECT * FROM user where `ID` = ".$_SESSION['id'];
+$query = "SELECT * FROM user where `Email` = '".$_SESSION['email']."'";
 $data = mysqli_query($conn, $query);
 $total = mysqli_num_rows($data);
 
@@ -178,7 +178,7 @@ if($total != 0)
 
     
     <div class="tab-pane fade in active" id="tab2" style="height:450px; width:850px; text-align:center;">
-            <table border="1" cellspacing="25" style="table-layout:fixed; text-align:center; height:100px; width:850px; " >
+            <table border="2" cellspacing="25" style="table-layout:fixed; text-align:center; height:100px; width:850px; " >
                 <tr>
                     <th>No.</th>
                     <th>Profile Picture</th>
@@ -211,10 +211,14 @@ if($total != 0)
 
                             $query = "SELECT * FROM `maid` WHERE `Email` = '".$maidID."'";
                             $data2 = mysqli_query($conn, $query);
-                            echo "<tr>";
-                            // echo $maidID;
+                            $total2 = mysqli_num_rows($data2);
+                            // echo $query;
+                            // echo "<br>";
+                            // echo $total2;
                             while($result=mysqli_fetch_assoc($data2))
                             {
+                                echo "<tr>";
+
                                 echo "
                                     <td>".($count)."</td>
                                 ";
@@ -235,8 +239,8 @@ if($total != 0)
                                     <td><a href = 'useraccount.php?ID=$maidID&date=$date&workStart=$workStart&workEnd=$workEnd'> Cancel Bocking </td>
                                 ";
                                 $count++;
+                                echo "</tr>";
                             }
-                            echo "</tr>";
                         }
                     } else{
                         echo"  No Records Found";

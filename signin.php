@@ -1,28 +1,31 @@
+<!-- $query = "SELECT * FROM `maid` WHERE `Email` = '$Email' and `Password` = '$Password'"; -->
+
 <?php
 require_once('connection.php');
 $email = $password = $pwd = '';
+session_start();
 
-$email = $_POST['email'];
-$pwd = $_POST['password'];
-$password = MD5($pwd);
-$sql = "SELECT * FROM user WHERE Email='$email' AND Password='$password'";
-$result = mysqli_query($conn, $sql);
-if(mysqli_num_rows($result) > 0)
-{
-	while($row = mysqli_fetch_assoc($result))
-	{
-		$id = $row["ID"];
-		$email = $row["Email"];
-		session_start();
-		$_SESSION['id'] = $id;
-		$_SESSION['email'] = $email;
-	}
-	header("Location: userwelcome.php");
-}
-else
-{
-	echo "Invalid email or password";
-}
+// $email = $_POST['email'];
+// $pwd = $_POST['password'];
+// $password = MD5($pwd);
+// $query = "SELECT * FROM `maid` WHERE `Email` = '$Email' and `Password` = '$Password'";
+// $result = mysqli_query($conn, $sql);
+// if(mysqli_num_rows($result) > 0)
+// {
+// 	while($row = mysqli_fetch_assoc($result))
+// 	{
+// 		$id = $row["ID"];
+// 		$email = $row["Email"];
+// 		session_start();
+// 		$_SESSION['id'] = $id;
+// 		$_SESSION['email'] = $email;
+// 	}
+// 	header("Location: userwelcome.php");
+// }
+// else
+// {
+// 	echo "Invalid email or password";
+// }
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +61,14 @@ else
                 font-weight: bold;
                 font-family: "Fonthead Designe";
             } 
+            .type
+            {
+                width: 300px;
+                height: 30px;
+                color: #4a2512;       
+                font-family: fantasy;
+                background-color: #fffbc1;
+            }
             .user-type
             {
                 width: 300px;
@@ -91,7 +102,7 @@ else
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="./asking.html" class="login-panel"><i class="fa fa-user">Join Now!</i></a>
+                    <a href="./signin.php" class="login-panel"><i class="fa fa-user">SIGN IN</i></a>
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
@@ -174,45 +185,44 @@ else
 
 
     <div>
-      <form class="contact-form">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-3">
-              <h1>SIGN IN</h1>
-                <p>WHAT ARE YOU WAITING FOR???</p>
-                <hr class="mb-3">
-                <p>BOOK FOR MAID SERVICE</p> <br>
-                <form method="POST" action="userlogin_code.php">
-                        <div class="form-group">
-                            <label class="inform" for="email">Email:</label>
-                            <div >
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
-                            </div> <br>
-                            <label class="inform" for="pwd">Password:</label>
-                            <div>
-                                <input type="password" class="form-control" name="password" id="pwd" placeholder="Enter password">
-                            </div> <br>
-                            <label class="inform" for="usertype">User Type:</label>
-                            <div>
-                                <select class="user-type">
-                                <option  name="usertype" value="Admin" style="font-size:45px;text-align: center; ">Admin</label>
-                                    <option  name="usertype" value="Customer" style="font-size:45px;text-align: center; ">Customer</label>
-                                    <option  name="usertype" value="Maid" style="font-size:45px; text-align: center;">Maid</label>
-                                </select>
-                            </div> <br>
-                            <div>
-                                <button type="submit" name="login" class="btn btn-primary" style="width:300 px; height:50px;">Login</button>
-                            </div> <br>
+        <!-- <form class="contact-form"> -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h1>SIGNUP</h1>
+                        <p>WHAT ARE YOU WAITING FOR???</p>
+                        <hr class="mb-3">
+                        <p>JOIN US NOW!!!</p> <br>
+                        <div id="frmRegistration">
+                            <form method="POST" action="login_code.php">
+                                <div class="form-group">
+                                    <label class="inform">Email:</label>
+                                    <div >
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+                                    </div> <br>
+                                    <label class="inform">Password:</label>
+                                    <div>
+                                        <input type="password" class="form-control" name="password" id="pwd" placeholder="Enter password">
+                                    </div> <br>
+                                    <label class="inform">User Type:</label>
+                                    <div>
+                                        <select class="type" name="user_type">
+                                            <option  name="usertype" value="Admin" style="font-size:45px;text-align: center; ">Admin</label>
+                                            <option  name="usertype" value="Customer" style="font-size:45px;text-align: center; ">Customer</label>
+                                            <option  name="usertype" value="Maid" style="font-size:45px; text-align: center;">Maid</label>
+                                        </select>
+                                    </div> <br>
+                                    <div>
+                                        <button type="submit" name="login" class="btn btn-primary" style="width:285px; height:50px;">Login</button>
+                                    </div> <br>
+                                </div>
+                                <p>Don't have an account? <br> <a> <a href="sign-up.php"> Sign Up Now</a> </p>
+                            </form>
                         </div>
-                            <p>Don't have an account? <br> <a> <a href="sign-up.php"> Sign Up Now</a> </p>
-                </form>
-              <!-- $query = "SELECT * FROM `maid` WHERE `Email` = '$Email' and `Password` = '$Password'"; -->
-
-              </div>
+                    </div>
+                </div>
             </div>
-            </div>
-          </div>
-        </form>
+        <!-- </form> -->
     </div>
 
 

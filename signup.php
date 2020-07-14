@@ -106,7 +106,7 @@ $email = $password = $pwd = '';
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="./asking.html" class="login-panel"><i class="fa fa-user">Join Now!</i></a>
+                    <a href="./signin.php" class="login-panel"><i class="fa fa-user">SIGN IN</i></a>
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"

@@ -95,15 +95,15 @@
             $data = mysqli_query($conn, $query);
 
             $total = mysqli_num_rows($data);
-            $per = 5; //每頁顯示項目數量
+            $per = 5; 
             $pages = ceil($total/$per);
 
-            if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-              $page=1; //則在此設定起始頁數
+            if (!isset($_GET["page"])){
+              $page=1; 
             } else {
-                $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
+                $page = intval($_GET["page"]); 
             }
-            $start = ($page-1)*$per; //每一頁開始的資料序號
+            $start = ($page-1)*$per; 
             $data2 = mysqli_query($conn,$query.' LIMIT '.$start.', '.$per) or die("Error");
 
             if($total != 0)
@@ -115,20 +115,14 @@
                 <tr>
                   <td id='adminID$num' >".$num."</td>
                   ";
-                //   echo '<td><img src="'.$result['Pic'].'" width="100"/></td>';
-                // echo "
-                //   <td>".$result['Firstname']."</td>
-                //   <td>".$result['Lastname']."</td>
-                //   <td>".$result['Gender']."</td>
-                //   <td>".$result['Email']."</td>
                 echo '<td> <img id="Pic'.$num.'" src="'.$result['Pic'].'" width="100"/></td>';
                 echo "
                   <td id='fname$num' >".$result['Firstname']."</td>
                   <td id='lname$num' >".$result['Lastname']."</td>
                   <td id='gender$num' >".$result['Gender']."</td>
                   <td id='email$num' >".$result['Email']."</td>
-                  <td><a href = 'adminedit.php?ID=$result[ID]' onclick='return checkedit()'> Edit / Update </td>
-                  <td><a href = 'admindelete.php?ID=$result[ID]'onclick='return checkdelete()'> Delete </td>
+                  <td><a href = 'adminedit.php?ID=$result[ID]' onclick='checkedit()'> Edit / Update </td>
+                  <td><a href = 'admindelete.php?ID=$result[ID]'onclick='check_delete(this)'> Delete </td>
                 </tr>
                 ";
                 $num++;
@@ -140,7 +134,6 @@
         </table>
 
         <?php
-          //分頁頁碼
           echo 'Total '.$total.' Collection of Data - On Page '.$page.' - Total '.$pages.' Pages';
           echo "<br /><a href=?page=1>First Page</a> ";
           echo "No. ";
@@ -151,13 +144,15 @@
           } 
           echo " Page <a href=?page=".$pages.">LastPage</a><br /><br />";
         ?>
-
   </center>
-
 <script>
-function checkdelete()
+function check_delete(value)
 {
-  return Confirm('Are you sure you want to Delete this Record');
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+      return true;
+  else
+    return false;
 }
 </script>
 </body>

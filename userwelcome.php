@@ -151,16 +151,15 @@
         </table>
 
         <?php
-          //分頁頁碼
-          echo '共 '.$total.' 筆-在 '.$page.' 頁-共 '.$pages.' 頁';
-          echo "<br /><a href=?page=1>首頁</a> ";
-          echo "第 ";
+          echo 'Total '.$total.' Collection of Data - On Page '.$page.' - Total '.$pages.' Pages';
+          echo "<br /><a href=?page=1>First Page</a> ";
+          echo "No. ";
           for( $i=1 ; $i<=$pages ; $i++ ) {
               if ( $page-3 < $i && $i < $page+3 ) {
                   echo "<a href=?page=".$i.">".$i."</a> ";
               }
           } 
-          echo " 頁 <a href=?page=".$pages.">末頁</a><br /><br />";
+          echo " Page <a href=?page=".$pages.">LastPage</a><br /><br />";
         ?>
   </center>
   

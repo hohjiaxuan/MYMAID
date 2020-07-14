@@ -1,5 +1,5 @@
 <!--
-Here, we write code for registration.
+Here, we write code for signup.
 -->
 <?php
 require_once('connection.php');
@@ -25,7 +25,7 @@ if($user_type == 'Customer') {
 $result = mysqli_query($conn, $sql) or die("Error");
 if($result)
 {
-	header("Location: login.php");
+	header("Location: signin.php");
 }
 else
 {

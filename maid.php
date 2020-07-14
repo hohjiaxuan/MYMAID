@@ -92,17 +92,16 @@
             error_reporting(0);
             $query = "SELECT * FROM maid ";
             $data = mysqli_query($conn, $query);
-
             $total = mysqli_num_rows($data);
-            $per = 5; //每頁顯示項目數量
+            $per = 5;
             $pages = ceil($total/$per);
 
-            if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-              $page=1; //則在此設定起始頁數
+            if (!isset($_GET["page"])){ 
+              $page=1; 
             } else {
-                $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
+                $page = intval($_GET["page"]); 
             }
-            $start = ($page-1)*$per; //每一頁開始的資料序號
+            $start = ($page-1)*$per;
             $data2 = mysqli_query($conn,$query.' LIMIT '.$start.', '.$per) or die("Error");
 
             if($total != 0)
@@ -121,8 +120,8 @@
                     <td id='gender$num' >".$result['Gender']."</td>
                     <td id='worktype$num' >".$result['Worktype']."</td>
                     <td id='email$num' >".$result['Email']."</td>
-                    <td><a href = 'maidedit.php?ID=$result[ID]' onclick='return checkedit()'> Edit / Update </td>
-                    <td><a href = 'maiddelete.php?ID=$result[ID]'onclick='return checkdelete()'> Delete </td>
+                    <td><a href = 'maidedit.php?ID=$result[ID]' onclick='checkedit()'> Edit / Update </td>
+                    <td><a href = 'maiddelete.php?ID=$result[ID]'onclick='check_delete()'> Delete </td>
                     </tr>
                   ";
                 $num++;
@@ -146,13 +145,15 @@
         ?>
         
   </center>
-
 <script>
-function checkdelete()
+function check_delete(value)
 {
-  return Confirm('Are you sure you want to Delete this Record');
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+      return true;
+  else
+    return false;
 }
 </script>
-
 </body>
 </html>

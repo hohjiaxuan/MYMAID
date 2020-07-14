@@ -6,7 +6,6 @@ Into this file, we write a code for display user information.
 include_once('link.php');
 include_once('adminheader1.php');
 include("connection.php");
-
 $query = "SELECT * FROM admin where `ID` = ".$_SESSION['id'];
 $data = mysqli_query($conn, $query);
 $total = mysqli_num_rows($data);
@@ -47,7 +46,7 @@ if($total != 0)
 
     </div>
 
-        <div class="well">
+    <div class="well">
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
           <table class="table">
@@ -78,9 +77,7 @@ if($total != 0)
             ?>
           </table>
         </div>
-
       </div>
-    </div>
-
+     </div>
     </div>
 </div>
