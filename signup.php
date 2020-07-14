@@ -2,27 +2,31 @@
 require_once('connection.php');
 $email = $password = $pwd = '';
 
-$email = $_POST['email'];
-$pwd = $_POST['password'];
-$password = MD5($pwd);
-$sql = "SELECT * FROM user WHERE Email='$email' AND Password='$password'";
-$result = mysqli_query($conn, $sql);
-if(mysqli_num_rows($result) > 0)
-{
-	while($row = mysqli_fetch_assoc($result))
-	{
-		$id = $row["ID"];
-		$email = $row["Email"];
-		session_start();
-		$_SESSION['id'] = $id;
-		$_SESSION['email'] = $email;
-	}
-	header("Location: userwelcome.php");
-}
-else
-{
-	echo "Invalid email or password";
-}
+
+// if($_POST) {
+//     $email = $_POST['email'];
+//     $pwd = $_POST['password'];
+//     $password = MD5($pwd);
+//     $sql = "SELECT * FROM user WHERE Email='$email' AND Password='$password'";
+//     $result = mysqli_query($conn, $sql);
+//     if(mysqli_num_rows($result) > 0)
+//     {
+//         while($row = mysqli_fetch_assoc($result))
+//         {
+//             $id = $row["ID"];
+//             $email = $row["Email"];
+//             session_start();
+//             $_SESSION['id'] = $id;
+//             $_SESSION['email'] = $email;
+//         }
+//         header("Location: userwelcome.php");
+//     }
+//     else
+//     {
+//         echo "Invalid email or password";
+//     }
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -185,98 +189,83 @@ else
 
 
     <div>
-      <form class="contact-form">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-3">
-              <h1>SIGNUP</h1>
-                <p>WHAT ARE YOU WAITING FOR???</p>
-                <hr class="mb-3">
-                <p>JOIN US NOW!!!</p> <br>
-                <div id="frmRegistration">
-                    <form class="form-horizontal" action="registration_code.php" method="POST">
-                            <div class="form-group">
+        <!-- <form class="contact-form"> -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h1>SIGNUP</h1>
+                        <p>WHAT ARE YOU WAITING FOR???</p>
+                        <hr class="mb-3">
+                        <p>JOIN US NOW!!!</p> <br>
+                        <div id="frmRegistration">
+                            <form class="form-horizontal" action="registration_code.php" method="POST">
+                                <div class="form-group">
 
-                                <label class="inform" for="firstname">First Name:</label>
-                                <div class="sign-up-inform">
-                                    <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Enter Firstname" required>
-                                </div>
-                                <label class="inform" for="lastname">Last Name:</label>
-                                <div class="sign-up-inform">
-                                    <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Enter Lastname" required>
-                                </div>
+                                    <label class="inform">First Name:</label>
+                                    <div class="sign-up-inform">
+                                        <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Enter Firstname" required>
+                                    </div>
+                                    <label class="inform">Last Name:</label>
+                                    <div class="sign-up-inform">
+                                        <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Enter Lastname" required>
+                                    </div>
 
-                                <label class="inform" for="lastname">Gender:</label>
+                                    <label class="inform">Gender:</label>
 
-                                <div class="sign-up-inform">
-                                    <label class="sign-up-inform-gender"><input type="radio" name="gender" value="Male">Male</label><br>
-                                    <label class="sign-up-inform-gender"><input type="radio" name="gender" value="Female">Female</label><br>
-                                </div><br><br><br>
+                                    <div class="sign-up-inform">
+                                        <label class="sign-up-inform-gender"><input type="radio" name="gender" value="Male">Male</label><br>
+                                        <label class="sign-up-inform-gender"><input type="radio" name="gender" value="Female">Female</label><br>
+                                    </div><br><br><br>
 
-                                <label class="inform" for="usertype">User Type:</label>
-                                <div>
-                                    <select class="type" id="usertype" onChange="showTest(this)" >
-                                        <option value="Customer"  style="font-size:45px;text-align: center; ">Customer</label>
-                                        <option value="Maid" style="font-size:45px; text-align: center;">Maid</label>
-                                    </select>
-                                </div><br><br>
+                                    <label class="inform">User Type:</label>
+                                    <div>
+                                        <select class="type" id="usertype" onChange="selectUserType(this)" name="user_type">
+                                            <option value="Customer"  style="font-size:45px;text-align: center; ">Customer</label>
+                                            <option value="Maid" style="font-size:45px; text-align: center;">Maid</label>
+                                        </select>
+                                    </div><br><br>
 
-                                <div id="worktype">
-                                    <label class="inform" >Work Type:</label>
-
-                                </div>
-                                <script>
-                                    function showTest(value) {
-                                        let e = document.getElementById(value.id);
-                                        console.log(value.options[e.selectedIndex].value)
-                                        if(value.options[e.selectedIndex].value == "Maid") {
-                                            document.getElementById("worktype").write("<div>");
-                                            // document.write("<select class=""type"">");
-                                            //     document.write("<option  name=""worktype"" value=""Full-Time"" style=""font-size:45px;text-align: center; "">Full-Time</label>");
-                                            //     document.write("<option  name=""worktype"" value=""Part-Time"" style=""font-size:45px; text-align: center;"">Part-Time</label>");
-                                            // document.write("</select>");
-                                            document.write("</div><br><br>");
+                                    <div id="worktype" style="display:none">
+                                        <label class="inform" >Work Type:</label>
+                                        <select class="type" name="worktype">
+                                            <option value="Full-Time"  style="font-size:45px;text-align: center; ">Full-Time</label>
+                                            <option value="Part-Time" style="font-size:45px; text-align: center;">Part-Time</label>
+                                        </select>
+                                    </div>
+                                    <script>
+                                        function selectUserType(value) {
+                                            let e = document.getElementById(value.id);
+                                            console.log(value.options[e.selectedIndex].value)
+                                            if(value.options[e.selectedIndex].value == "Maid") {
+                                                document.getElementById("worktype").style.display = "inline";
+                                            } else {
+                                                document.getElementById("worktype").style.display = "none";
+                                            }
                                         }
-                                    }
-                                    // let e = document.getElementById("usertype");
-                                    
-                                    
-                                    // if(document.getElementById("usertype").options[e.selectedIndex].value == "Maid") {
-                                    //     document.write("<div>");
-                                    //         document.write("<select class=""type"">");
-                                    //             document.write("<option  name=""worktype"" value=""Full-Time"" style=""font-size:45px;text-align: center; "">Full-Time</label>");
-                                    //             document.write("<option  name=""worktype"" value=""Part-Time"" style=""font-size:45px; text-align: center;"">Part-Time</label>");
-                                    //         </select>
-                                    //     document.write("</div><br><br>");
-                                    // }
-                                </script>
+                                    </script>
 
-                                
-                                    <label class="inform" for="email">Email:</label>
-                                <div class="sign-up-inform">
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+                                    <label class="inform">Email:</label>
+                                    <div class="sign-up-inform" >
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+                                    </div>
+                                        <label class="inform" >Password:</label>
+                                    <div class="sign-up-inform">
+                                        <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" required>
+                                    </div>
+                                        <label class="inform" >Profile Picture:</label>
+                                    <div class="sign-up-inform">
+                                        <input type="file" name="pic" class="form-control" id="pic" accept="image/*" required>
+                                    </div> <br>
+                                    <div> 
+                                        <button type="submit" name="create" class="btn btn-primary" style="width:285px; height:50px;">Submit</button>
+                                    </div>
                                 </div>
-                                    <label class="inform" for="pwd">Password:</label>
-                                <div class="sign-up-inform">
-                                    <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" required>
-                                </div>
-                                    <label class="inform" for="pic">Profile Picture:</label>
-                                <div class="sign-up-inform">
-                                    <input type="file" name="pic" class="form-control" id="pic" accept="image/*" required>
-                                </div> <br>
-                                <div> 
-                                    <button type="submit" name="create" class="btn btn-primary" style="width:285px; height:50px;">Submit</button>
-                                </div>
-                            </div>
-                    </form>
+                            </form>
+                        </div>
                     </div>
-              
-
-              </div>
+                </div>
             </div>
-            </div>
-          </div>
-        </form>
+        <!-- </form> -->
     </div>
 
 
