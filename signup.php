@@ -2,27 +2,31 @@
 require_once('connection.php');
 $email = $password = $pwd = '';
 
-$email = $_POST['email'];
-$pwd = $_POST['password'];
-$password = MD5($pwd);
-$sql = "SELECT * FROM user WHERE Email='$email' AND Password='$password'";
-$result = mysqli_query($conn, $sql);
-if(mysqli_num_rows($result) > 0)
-{
-	while($row = mysqli_fetch_assoc($result))
-	{
-		$id = $row["ID"];
-		$email = $row["Email"];
-		session_start();
-		$_SESSION['id'] = $id;
-		$_SESSION['email'] = $email;
-	}
-	header("Location: userwelcome.php");
-}
-else
-{
-	echo "Invalid email or password";
-}
+
+// if($_POST) {
+//     $email = $_POST['email'];
+//     $pwd = $_POST['password'];
+//     $password = MD5($pwd);
+//     $sql = "SELECT * FROM user WHERE Email='$email' AND Password='$password'";
+//     $result = mysqli_query($conn, $sql);
+//     if(mysqli_num_rows($result) > 0)
+//     {
+//         while($row = mysqli_fetch_assoc($result))
+//         {
+//             $id = $row["ID"];
+//             $email = $row["Email"];
+//             session_start();
+//             $_SESSION['id'] = $id;
+//             $_SESSION['email'] = $email;
+//         }
+//         header("Location: userwelcome.php");
+//     }
+//     else
+//     {
+//         echo "Invalid email or password";
+//     }
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -185,17 +189,17 @@ else
 
 
     <div>
-      <form class="contact-form">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-3">
-              <h1>SIGNUP</h1>
-                <p>WHAT ARE YOU WAITING FOR???</p>
-                <hr class="mb-3">
-                <p>JOIN US NOW!!!</p> <br>
-                <div id="frmRegistration">
-                    <form class="form-horizontal" action="registration_code.php" method="POST">
-                            <div class="form-group">
+        <!-- <form class="contact-form"> -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h1>SIGNUP</h1>
+                        <p>WHAT ARE YOU WAITING FOR???</p>
+                        <hr class="mb-3">
+                        <p>JOIN US NOW!!!</p> <br>
+                        <div id="frmRegistration">
+                            <form class="form-horizontal" action="registration_code.php" method="POST">
+                                <div class="form-group">
 
                                 <label class="inform" for="firstname">First Name:</label>
                                 <div class="sign-up-inform">
@@ -270,13 +274,9 @@ else
                             </div>
                     </form>
                     </div>
-              
-
-              </div>
+                </div>
             </div>
-            </div>
-          </div>
-        </form>
+        <!-- </form> -->
     </div>
 
 
