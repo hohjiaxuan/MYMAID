@@ -157,8 +157,8 @@ else
                         <li><a href="./about.html">About MYMAID</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                         <li><a href="./faq.html">FAQ</a></li>
-                        <li><a href="./signup.html">Sign Up</a></li>
-                        <li><a href="./signin.html">Sign In</a></li>
+                        <li><a href="./signup.php">Sign Up</a></li>
+                        <li><a href="./signin.php">Sign In</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
@@ -197,33 +197,61 @@ else
                     <form class="form-horizontal" action="registration_code.php" method="POST">
                             <div class="form-group">
 
-                                    <label class="inform" for="firstname">First Name:</label>
+                                <label class="inform" for="firstname">First Name:</label>
                                 <div class="sign-up-inform">
                                     <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Enter Firstname" required>
                                 </div>
-                                    <label class="inform" for="lastname">Last Name:</label>
+                                <label class="inform" for="lastname">Last Name:</label>
                                 <div class="sign-up-inform">
                                     <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Enter Lastname" required>
                                 </div>
-                                    <label class="inform" for="lastname">Gender:</label>
+
+                                <label class="inform" for="lastname">Gender:</label>
+
                                 <div class="sign-up-inform">
                                     <label class="sign-up-inform-gender"><input type="radio" name="gender" value="Male">Male</label><br>
                                     <label class="sign-up-inform-gender"><input type="radio" name="gender" value="Female">Female</label><br>
                                 </div><br><br><br>
-                                    <label class="inform" for="usertype">User Type:</label>
+
+                                <label class="inform" for="usertype">User Type:</label>
                                 <div>
-                                    <select class="type">
-                                        <option  name="usertype" value="Customer" style="font-size:45px;text-align: center; ">Customer</label>
-                                        <option  name="usertype" value="Maid" style="font-size:45px; text-align: center;">Maid</label>
+                                    <select class="type" id="usertype" onChange="showTest(this)" >
+                                        <option value="Customer"  style="font-size:45px;text-align: center; ">Customer</label>
+                                        <option value="Maid" style="font-size:45px; text-align: center;">Maid</label>
                                     </select>
                                 </div><br><br>
-                                <label class="inform" for="worktype">Work Type:</label>
-                                <div>
-                                    <select class="type">
-                                        <option  name="worktype" value="Full-Time" style="font-size:45px;text-align: center; ">Full-Time</label>
-                                        <option  name="worktype" value="Part-Time" style="font-size:45px; text-align: center;">Part-Time</label>
-                                    </select>
-                                </div><br><br>
+
+                                <div id="worktype">
+                                    <label class="inform" >Work Type:</label>
+
+                                </div>
+                                <script>
+                                    function showTest(value) {
+                                        let e = document.getElementById(value.id);
+                                        console.log(value.options[e.selectedIndex].value)
+                                        if(value.options[e.selectedIndex].value == "Maid") {
+                                            document.getElementById("worktype").write("<div>");
+                                            // document.write("<select class=""type"">");
+                                            //     document.write("<option  name=""worktype"" value=""Full-Time"" style=""font-size:45px;text-align: center; "">Full-Time</label>");
+                                            //     document.write("<option  name=""worktype"" value=""Part-Time"" style=""font-size:45px; text-align: center;"">Part-Time</label>");
+                                            // document.write("</select>");
+                                            document.write("</div><br><br>");
+                                        }
+                                    }
+                                    // let e = document.getElementById("usertype");
+                                    
+                                    
+                                    // if(document.getElementById("usertype").options[e.selectedIndex].value == "Maid") {
+                                    //     document.write("<div>");
+                                    //         document.write("<select class=""type"">");
+                                    //             document.write("<option  name=""worktype"" value=""Full-Time"" style=""font-size:45px;text-align: center; "">Full-Time</label>");
+                                    //             document.write("<option  name=""worktype"" value=""Part-Time"" style=""font-size:45px; text-align: center;"">Part-Time</label>");
+                                    //         </select>
+                                    //     document.write("</div><br><br>");
+                                    // }
+                                </script>
+
+                                
                                     <label class="inform" for="email">Email:</label>
                                 <div class="sign-up-inform">
                                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>

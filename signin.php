@@ -146,8 +146,8 @@ else
                         <li><a href="./about.html">About MYMAID</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                         <li><a href="./faq.html">FAQ</a></li>
-                        <li><a href="./signup.html">Sign Up</a></li>
-                        <li><a href="./signin.html">Sign In</a></li>
+                        <li><a href="./signup.php">Sign Up</a></li>
+                        <li><a href="./signin.php">Sign In</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
