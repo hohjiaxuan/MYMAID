@@ -10,13 +10,15 @@ $id=$_GET["ID"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
     $pic=$_GET["Pic"];
+    // $worktype=$
     $query = "UPDATE maid SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic', Worktype='$worktype' WHERE ID='$id' ";
+    echo $query;
     $data = mysqli_query($conn, $query);
     
   if($data)
     {
       ?>
-      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/maid.php">
+      <!-- <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/maid.php"> -->
       <?php
     } else {
       echo "Failed to Updated Record";
@@ -74,7 +76,7 @@ $id=$_GET["ID"];
      <table border="0" bgcolor="#362511 align="center" cellspacing="20">
        <tr>
          <td>ID</td>
-         <td><input type="text" value="<?php echo "$id" ?>" name="id" required></td>
+         <td><input type="text" value="<?php echo "$id" ?>" name="ID" required></td>
        </tr>
        <tr>
          <td>Firstname</td>

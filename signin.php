@@ -206,7 +206,7 @@ else
                         </div>
                             <p>Don't have an account? <br> <a> <a href="sign-up.php"> Sign Up Now</a> </p>
                 </form>
-              
+              <!-- $query = "SELECT * FROM `maid` WHERE `Email` = '$Email' and `Password` = '$Password'"; -->
 
               </div>
             </div>

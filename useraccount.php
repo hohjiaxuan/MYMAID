@@ -92,6 +92,7 @@ if($total != 0)
                             <td>Email</td>
                             <td>".$email."</td>
                         </tr>
+                        
                     ";
                 }else{
                     echo"No records found";
@@ -130,7 +131,7 @@ if($total != 0)
                     // echo $query;
                     $data = mysqli_query($conn, $query);
                     $total = mysqli_num_rows($data);
-                    echo $total;
+                    // echo $total;
                     if($total != 0)
                     {
                         $count = 1;
@@ -144,7 +145,7 @@ if($total != 0)
                             $query = "SELECT * FROM `maid` WHERE `Email` = '".$maidID."'";
                             $data2 = mysqli_query($conn, $query);
                             echo "<tr>";
-                            echo $maidID;
+                            // echo $maidID;
                             while($result=mysqli_fetch_assoc($data2))
                             {
                                 echo "
@@ -166,7 +167,7 @@ if($total != 0)
                                 echo"
                                     <td><a href = 'useraccount.php?ID=$maidID&date=$date&workStart=$workStart&workEnd=$workEnd'> Cancel Bocking </td>
                                 ";
-                                $count;
+                                $count++;
                             }
                             echo "</tr>";
                         }
