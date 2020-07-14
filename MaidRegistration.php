@@ -22,10 +22,19 @@ include_once('link.php');
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="lastname">Gender:</label>
+    <label class="control-label col-sm-2" for="gender">Gender:</label>
     <div class="col-sm-6">
       <label class="radio-inline"><input type="radio" name="gender" value="Male">Male</label>
 	  <label class="radio-inline"><input type="radio" name="gender" value="Female">Female</label>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="lastname">Work Type:</label>
+    <div class="col-sm-6">
+        <select name="Worktype">
+              <option  value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+        </select>
     </div>
   </div>
   <div class="form-group">

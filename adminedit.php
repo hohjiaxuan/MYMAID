@@ -2,31 +2,27 @@
 include("connection.php");
 error_reporting(0);
 $id=$_GET["ID"];
-// $fname=$_GET["Firstname"];
-// $lname=$_GET["Lastname"];
-// $gender=$_GET["Gender"];
-// $email=$_GET["Email"];
-// $pic=$_GET["Pic"];
-if($_GET['submit'])
-{
-  // echo "<script>alert('警告：無法在確認之後跳頁');</script>";
-  $id=$_GET["ID"];
-  $fname=$_GET["Firstname"];
-  $lname=$_GET["Lastname"];
-  $gender=$_GET["Gender"];
-  $email=$_GET["Email"];
-  $pic=$_GET["Pic"];
-  $query = "UPDATE admin SET ID='$id', Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
-  $data = mysqli_query($conn, $query);
-  if($data)
+  if($_GET['submit'])
   {
-    ?>
-    <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/adminedit.php">
-    <?php
-  }else {
-    echo "Failed to Updated Record";
+  // echo "<script>alert('警告：無法在確認之後跳頁');</script>";
+    $id=$_GET["ID"];
+    $fname=$_GET["Firstname"];
+    $lname=$_GET["Lastname"];
+    $gender=$_GET["Gender"];
+    $email=$_GET["Email"];
+    $pic=$_GET["Pic"];
+    $query = "UPDATE admin SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
+    $data = mysqli_query($conn, $query);
+    
+  if($data)
+    {
+      ?>
+      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/adminwelcome.php">
+      <?php
+    } else {
+      echo "Failed to Updated Record";
+    }
   }
-}
  ?>
 
  <html>
@@ -34,36 +30,33 @@ if($_GET['submit'])
    <title>MYMAID</title>
 
    <style>
-      table{
-            color: #fffbc1;
-            width:400px;
-            border-radius:20px;
-            table-layout: fixed;
-            }
+      table
+      {
+          color: #fffbc1;
+          width:400px;
+          border-radius:20px;
+          table-layout: fixed;
+      }
 
-        .button{
-            background-color: #fffbc1;
-            color: #362511;
-            height: 32px;
-            width: 125px;
-            border-radius: 25px;
-            font-size: 16px;
+        .button
+        {
+          background-color: #fffbc1;
+          color: #362511;
+          height: 32px;
+          width: 125px;
+          border-radius: 25px;
+          font-size: 16px;
         }
 
-        body{
+        body
+        {
           background-color: #eb4034;
         }
-
-        h1{
-          color: #fffbc1;
-          text-align: center;
-        }
-
    </style>
  </head>
 
  <body>
-   <div align=center>
+   <div align="center">
      <?php
      echo "<img src='img/MYMAID.png' alt='MYMAID' width='320' height='285' />";
      $id=$_GET["ID"];
@@ -81,10 +74,8 @@ if($_GET['submit'])
      }
     ?>
   </div>
-   <h1>MYMAID | EDIT/UPDATE PROFILE </h1>
-   <br><br><br><br>
-
-
+  `<h1 style="font-size:80px; font-family:Fonthead Designe; color: #fffbc1; text-align: center;">MYMAID</h1>
+   <p style="font-size:32px; font-family:monospace; font-weight: bold; color: #ffcc00; text-align: center;">ADMIN | EDIT/UPDATE PROFILE</p>
    <form action="" method="GET">
      <center>
      <table border="0" bgcolor="#362511 align="center" cellspacing="20">
@@ -116,6 +107,7 @@ if($_GET['submit'])
          <td colspan="2" align="center"><input type="submit" id="btn" name="submit" value="Update Details"></a></td>
        </tr>
      </table>
+     <label style="font-weight:bold; font-size:30px;"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>"> BACK </a></label>
    </center>
    </form>
  </body>

@@ -15,16 +15,14 @@ $email = $_SESSION['email'];
 		echo "<img src='img/MYMAID.png' alt='MYMAID' width='50' height='45' />";
 		?>
 		<div class="navbar-header">
-			<a href="UserRegistration.php" class="navbar-brand">Registration</a>
-			<a href="userlogin.php" class="navbar-brand">Login</a>
+		<a href="index.html" class="navbar-brand">MYMAID</a>
 		</div>
 
 		<div class="dropdown navbar-right" id="right">
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $email;?>
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
-  	<!-- <li><a href="admindetail.php">MYMAID</a></li> -->
-		<li><a href="maiddetail.php">Maid</a></li>
+  		<li><a href="userwelcome.php">User</a></li>
 		<li><a href="useraccount.php">Account</a></li>
     <li><a href="userlogout.php">Logout</a></li>
   </ul>

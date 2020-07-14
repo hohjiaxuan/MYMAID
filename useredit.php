@@ -2,11 +2,26 @@
 include("connection.php");
 error_reporting(0);
 $id=$_GET["ID"];
-$fname=$_GET["Firstname"];
-$lname=$_GET["Lastname"];
-$gender=$_GET["Gender"];
-$email=$_GET["Email"];
-$pic=$_GET["Pic"];
+  if($_GET['submit'])
+  {
+    $id=$_GET["ID"];
+    $fname=$_GET["Firstname"];
+    $lname=$_GET["Lastname"];
+    $gender=$_GET["Gender"];
+    $email=$_GET["Email"];
+    $pic=$_GET["Pic"];
+    $query = "UPDATE user SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
+    $data = mysqli_query($conn, $query);
+    
+  if($data)
+    {
+      ?>
+      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/user.php">
+      <?php
+    } else {
+      echo "Failed to Updated Record";
+    }
+  }
  ?>
 
  <html>
@@ -14,31 +29,28 @@ $pic=$_GET["Pic"];
    <title>MYMAID</title>
 
    <style>
-      table{
-            color: #fffbc1;
-            width:400px;
-            border-radius:20px;
-            table-layout: fixed;
-            }
+      table
+      {
+          color: #fffbc1;
+          width:400px;
+          border-radius:20px;
+          table-layout: fixed;
+      }
 
-        .button{
-            background-color: #fffbc1;
-            color: #362511;
-            height: 32px;
-            width: 125px;
-            border-radius: 25px;
-            font-size: 16px;
+        .button
+        {
+          background-color: #fffbc1;
+          color: #362511;
+          height: 32px;
+          width: 125px;
+          border-radius: 25px;
+          font-size: 16px;
         }
 
-        body{
+        body
+        {
           background-color: #eb4034;
         }
-
-        h1{
-          color: #fffbc1;
-          text-align: center;
-        }
-
    </style>
  </head>
 
@@ -46,11 +58,23 @@ $pic=$_GET["Pic"];
    <div align=center>
      <?php
      echo "<img src='img/MYMAID.png' alt='MYMAID' width='320' height='285' />";
+     $id=$_GET["ID"];
+     $query = "SELECT * FROM `user` WHERE ID=".$id;
+     $data = mysqli_query($conn, $query);
+     $total = mysqli_num_rows($data);
+     // echo $total;
+     while($result=mysqli_fetch_assoc($data))
+     {
+       $fname=$result['Firstname'];
+       $lname=$result['Lastname'];
+       $gender=$result['Gender'];
+       $email=$result['Email'];
+       $pic=$result['Pic'];
+     }
     ?>
   </div>
-   <h1>MYMAID | EDIT/UPDATE PROFILE </h1>
-   <br><br><br><br>
-
+  <h1 style="font-size:80px; font-family:Fonthead Designe; color: #fffbc1; text-align: center;">MYMAID</h1>
+   <p style="font-size:32px; font-family:monospace; font-weight: bold; color: #ffcc00; text-align: center;">USER | EDIT/UPDATE PROFILE</p>
    <form action="" method="GET">
      <center>
      <table border="0" bgcolor="#362511 align="center" cellspacing="20">
@@ -82,31 +106,8 @@ $pic=$_GET["Pic"];
          <td colspan="2" align="center"><input type="submit" id="btn" name="submit" value="Update Details"></a></td>
        </tr>
      </table>
+     <label style="font-weight:bold; font-size:30px;"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>"> BACK </a></label>
    </center>
    </form>
  </body>
  </html>
-
-<?php
-if($_GET['submit'])
-{
-  $id=$_GET["ID"];
-  $fname=$_GET["Firstname"];
-  $lname=$_GET["Lastname"];
-  $gender=$_GET["Gender"];
-  $email=$_GET["Email"];
-  $pic=$_GET["Pic"];
-  $query = "UPDATE user SET ID='$id', Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
-  $data = mysqli_query($conn, $query);
-
-  if($data)
-  {
-    echo "<script>alert('Record Updated')</script>";
-    ?>
-    <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/useredit.php">
-    <?php
-  }else {
-    echo "Failed to Updated Record";
-  }
-}
-?>

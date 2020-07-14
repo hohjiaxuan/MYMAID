@@ -11,7 +11,7 @@ if($data)
 {
   echo "<script>alert('Record has been Deleted from Database')</script>";
   ?>
-  <META HTTP-EQUIV="Refresh" CONTENT = "0; URL= http://localhost/xuan/MYMAID/userdetail.php">
+  <META HTTP-EQUIV="Refresh" CONTENT = "0; URL= http://localhost/xuan/MYMAID/user.php">
   <?php
 }else{
   echo "<script>Failed to delete Record from Database</script>";

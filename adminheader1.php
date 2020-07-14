@@ -15,8 +15,9 @@ $email = $_SESSION['email'];
 		echo "<img src='img/MYMAID.png' alt='MYMAID' width='50' height='45' />";
 		?>
 		<div class="navbar-header">
-			<a href="AdminRegistration.php" class="navbar-brand">Registration</a>
-			<a href="adminlogin.php" class="navbar-brand">Login</a>
+			<!-- <a href="AdminRegistration.php" class="navbar-brand">Registration</a>
+			<a href="adminlogin.php" class="navbar-brand">Login</a> -->
+			<a href="index.html" class="navbar-brand">MYMAID</a>
 		</div>
 
 		<div class="dropdown navbar-right" id="right">

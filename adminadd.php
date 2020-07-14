@@ -24,7 +24,7 @@
     if($data)
     {
       ?>
-      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/admindetail.php">
+      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/adminwelcome.php">
      <?php
     }else {
       echo "Failed to Updated Record";
@@ -38,31 +38,28 @@
    <title>MYMAID</title>
 
    <style>
-      table{
-            color: #fffbc1;
-            width:400px;
-            border-radius:20px;
-            table-layout: fixed;
-            }
+      table
+      {
+        color: #fffbc1;
+        width:400px;
+        border-radius:20px;
+        table-layout: fixed;
+      }
 
-        .button{
-            background-color: #fffbc1;
-            color: #362511;
-            height: 32px;
-            width: 125px;
-            border-radius: 25px;
-            font-size: 16px;
+        .button
+        {
+          background-color: #fffbc1;
+          color: #362511;
+          height: 32px;
+          width: 125px;
+          border-radius: 25px;
+          font-size: 16px;
         }
 
-        body{
+        body
+        {
           background-color: #eb4034;
         }
-
-        h1{
-          color: #fffbc1;
-          text-align: center;
-        }
-
    </style>
  </head>
 
@@ -85,10 +82,8 @@
      }
     ?>
   </div>
-   <h1>MYMAID | EDIT/UPDATE PROFILE </h1>
-   <br><br><br><br>
-
-
+  <h1 style="font-size:80px; font-family:Fonthead Designe; color: #fffbc1; text-align: center;">MYMAID</h1>
+  <p style="font-size:32px; font-family:monospace; font-weight: bold; color: #ffcc00; text-align: center;">ADMIN | ADD PROFILE</p>
    <form action="" method="GET">
      <center>
      <table border="0" bgcolor="#362511 align="center" cellspacing="20">
@@ -125,6 +120,7 @@
          <td colspan="2" align="center"><input type="submit" id="btn" name="submit" value="Update Details"></a></td>
        </tr>
      </table>
+     <label style="font-weight:bold; font-size:30px;"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>"> BACK </a></label>
    </center>
    </form>
  </body>

@@ -1,19 +1,10 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <title> MYMAID | ADMIN </title>
 <style type="text/css">
-
-  body{
-    background-color: #ff9393;
-  }
-
-  h1{
-    color: #fffbc1;
-  }
-
-  #editbtn{
+  #editbtn
+  {
     background-color: #fffbc1;
     color:#362511;
     text-align: center;
@@ -23,7 +14,8 @@
     width: 250px;
   }
 
-  #deletebtn{
+  #deletebtn
+  {
     background-color: #fffbc1;
     color:#362511;
     text-align: center;
@@ -33,51 +25,66 @@
     width: 250px;
   }
 
-  .btn:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
+  .btn:hover 
+  {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
 
-  table{
-      border-collapse: collapse;
+  table
+  {
       width: 100%;
-      color: #eb4034;
-      font-family: monospace;
+      height: 100px;
+      color: #362511;
       font-size: 25px;
-      text-align: left;
-      }
+      text-align: center;
+      font-family: monospace;
+      border-collapse: collapse;
+  }
 
-    th{
-    background-color: #eb4034;
-    color: yellow;
+  th
+  {
+    width: 100px;
+    height: 95px;
+    color: #666600;
+    text-align: center;
+    background-color: #ffff99;
+  }
+
+  td
+    {
+      text-align: center;
+      background-color: #cc9933;
     }
 
-    tr:nth-child(even) {background-color: #ededed}
-  .without::-webkit-datetime-edit-ampm-field {
+  .without::-webkit-datetime-edit-ampm-field 
+  {
    display: none;
- }
+  }
 </style>
 <SCRIPT SRC="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></SCRIPT>
 </head>
 
-<body>
+<body style="background-color: #ff9393;">
   <?php include_once('userheader1.php'); ?>
 
   <center>
     <?php
     echo "<img src='img/MYMAID.png' alt='MYMAID' />";
     ?>
-    <h1>USER OF MYMAID</h1>
-    <p>Book the maid you want...</p>
+
+    <h1 style="font-family:Fonthead Designe; color: #fffbc1;">MAIDS OF MYMAID</h1>
+    <p style="font-family:monospace; color: #990066;">Booking maid services!!!</p>
     <br>
     <br>
-    <table border="2" cellspacing="8">
+    <table border=3" cellspacing="9">
             <tr>
               <th>No.</th>
               <th>Profile Picture</th>
               <th>Firstname</th>
               <th>Lastname</th>
               <th>Gender</th>
-              <th>Option</th>
+              <th>Work Type</th>
+              <th>Date</th>
               <th>Hour(s)</th>
               <th></th>
             </tr>
@@ -116,6 +123,7 @@
                   <td id='fname$num' >".$result['Firstname']."</td>
                   <td id='lname$num' >".$result['Lastname']."</td>
                   <td id='gender$num' >".$result['Gender']."</td>
+                  <td id='worktype$num' >".$result['Worktype']."</td>
                   ";
                   echo '<td>
                         <input id="date'.$num.'" type="date"/><br>
@@ -123,7 +131,7 @@
                   echo '<td >
                     <input id="time1'.$num.'" type="time"/>
                     <br>
-                    to
+                    <label style="text-align:center;">to</label>
                     <br>
                     <input id="time2'.$num.'" type="time"/>
                     </td>
@@ -139,10 +147,9 @@
             } else {
               echo"No records found";
             }
-
-            
             ?>
         </table>
+
         <?php
           //分頁頁碼
           echo '共 '.$total.' 筆-在 '.$page.' 頁-共 '.$pages.' 頁';
@@ -165,6 +172,7 @@ function call_function (value) {
   var fname = document.getElementById("fname"+value.id).innerHTML;
   var lname = document.getElementById("lname"+value.id).innerHTML;
   var gender = document.getElementById("gender"+value.id).innerHTML;
+  var worktype = document.getElementById("worktype"+value.id).innerHTML;
   var date = document.getElementById("date"+value.id).value;
   var time1 = document.getElementById("time1"+value.id).value;
   var time2 = document.getElementById("time2"+value.id).value;
@@ -173,6 +181,7 @@ function call_function (value) {
   console.log(fname);
   console.log(lname);
   console.log(gender);
+  console.log(worktype);
   if(date == "" || time1 == "" || time2 == "") {
     console.log("can not null");
   }
@@ -190,7 +199,6 @@ function call_function (value) {
   return false;
 }
 </script>
-
 </body>
 </html>
 

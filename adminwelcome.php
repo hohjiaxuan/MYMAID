@@ -1,49 +1,12 @@
-<!--
-Into this file, we create a layout for welcome page.
--->
-
-<?php
-// include_once('link.php');
-// include_once('adminheader1.php');
-// require_once('connection.php');
-//
-// $id = $_SESSION['id'];
-// $fname = $lname = $email = $gender = '';
-// $sql = "SELECT * FROM admin WHERE ID='$id'";
-// $result = mysqli_query($conn, $sql);
-// if(mysqli_num_rows($result) > 0)
-// {
-// 	while($row = mysqli_fetch_assoc($result))
-// 	{
-// 		$fname = $row["Firstname"];
-// 		$lname = $row["Lastname"];
-// 		$email = $row["Email"];
-// 		$gender = $row["Gender"];
-// 	}
-// }
-
-?>
-<!-- <div class="jumbotron">
-	<center>
-		<h1>Welcome <?php echo $fname." ".$lname; ?></h1>
-
-	</center>
-</div> -->
 <!DOCTYPE html>
 <html>
 <head>
   <title> MYMAID | ADMIN </title>
+
 <style type="text/css">
 
-  body{
-    background-color: #ff9393;
-  }
-
-  h1{
-    color: #fffbc1;
-  }
-
-  #editbtn{
+  #editbtn
+  {
     background-color: #fffbc1;
     color:#362511;
     text-align: center;
@@ -53,60 +16,76 @@ Into this file, we create a layout for welcome page.
     width: 250px;
   }
 
-  #deletebtn{
-    background-color: #fffbc1;
-    color:#362511;
-    text-align: center;
-    font-size: 25px;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 250px;
-  }
-
-  .btn:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-  table{
-      border-collapse: collapse;
-      width: 100%;
-      color: #eb4034;
-      font-family: monospace;
+  #deletebtn
+    {
+      background-color: #fffbc1;
+      color:#362511;
+      text-align: center;
       font-size: 25px;
-      text-align: left;
-      }
-
-    th{
-    background-color: #eb4034;
-    color: yellow;
+      margin: 4px 2px;
+      cursor: pointer;
+      width: 250px;
     }
 
-    tr:nth-child(even) {background-color: #ededed}
+   table
+    {
+      width: 100%;
+      height: 100px;
+      color: #362511;
+      font-size: 25px;
+      text-align: center;
+      font-family: monospace;
+      border-collapse: collapse;
+    }
+
+    th
+    {
+      width: 100px;
+      height: 95px;
+      color: #fffbc1;
+      text-align: center;
+      background-color: #362511;
+    }
+
+    td
+    {
+      text-align: center;
+      background-color: #fffbc1;
+    }
+
+    .add
+    {
+      color: #362511;
+      width:150px;
+      height: 40px;
+      font-weight:bold;
+      background-color: #fffbc1;
+    }
 
 </style>
+<SCRIPT SRC="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></SCRIPT>
 </head>
 
-<body>
-  <?php include_once('adminheader1.php'); ?>
-
+<body style="background-color: #ff9393;">
+    <?php include_once('adminheader1.php'); ?>
   <center>
     <?php
     echo "<img src='img/MYMAID.png' alt='MYMAID' />";
     ?>
-    <h1>ADMIN OF MYMAID</h1>
-    <p>It display admins' details.</p>
+    <h1 style="font-family:Fonthead Designe; color: #fffbc1;">ADMIN OF MYMAID</h1>
+    <p style="font-family:monospace; color: #990066;">It display admins' details.</p>
     <br>
-    <button name="add" onclick="location.href='adminadd.php'" > Add</button>
-    <br>
-    <table border="2" cellspacing="8">
+    <button name="add" onclick="location.href='adminadd.php'" class="add"> Add </button>
+    <br><br><br>
+    <table border="3" cellspacing="15">
             <tr>
-              <th>ID</th>
+              <th>No.</th>
               <th>Profile Picture</th>
               <th>Firstname</th>
               <th>Lastname</th>
               <th>Gender</th>
               <th>Email</th>
-              <th colspan="2" align="center" >Operation</th>
+              <th colspan="3" align="center" >Operation</th>
             </tr>
 
             <?php
@@ -114,37 +93,65 @@ Into this file, we create a layout for welcome page.
             error_reporting(0);
             $query = "SELECT * FROM admin ";
             $data = mysqli_query($conn, $query);
+
             $total = mysqli_num_rows($data);
+            $per = 5; //每頁顯示項目數量
+            $pages = ceil($total/$per);
+
+            if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
+              $page=1; //則在此設定起始頁數
+            } else {
+                $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
+            }
+            $start = ($page-1)*$per; //每一頁開始的資料序號
+            $data2 = mysqli_query($conn,$query.' LIMIT '.$start.', '.$per) or die("Error");
 
             if($total != 0)
             {
-              while($result=mysqli_fetch_assoc($data))
+              $num = 1;
+              while($result=mysqli_fetch_assoc($data2))
               {
                 echo "
                 <tr>
-                  <td>".$result['ID']."</td>
+                  <td id='adminID$num' >".$num."</td>
                   ";
-                  echo '<td><img src="'.$result['Pic'].'" width="100"/></td>';
+                //   echo '<td><img src="'.$result['Pic'].'" width="100"/></td>';
+                // echo "
+                //   <td>".$result['Firstname']."</td>
+                //   <td>".$result['Lastname']."</td>
+                //   <td>".$result['Gender']."</td>
+                //   <td>".$result['Email']."</td>
+                echo '<td> <img id="Pic'.$num.'" src="'.$result['Pic'].'" width="100"/></td>';
                 echo "
-                  <td>".$result['Firstname']."</td>
-                  <td>".$result['Lastname']."</td>
-                  <td>".$result['Gender']."</td>
-                  <td>".$result['Email']."</td>
+                  <td id='fname$num' >".$result['Firstname']."</td>
+                  <td id='lname$num' >".$result['Lastname']."</td>
+                  <td id='gender$num' >".$result['Gender']."</td>
+                  <td id='email$num' >".$result['Email']."</td>
                   <td><a href = 'adminedit.php?ID=$result[ID]' onclick='return checkedit()'> Edit / Update </td>
                   <td><a href = 'admindelete.php?ID=$result[ID]'onclick='return checkdelete()'> Delete </td>
                 </tr>
                 ";
-                // echo '<td><img src="'.$result['Pic'].'"/></td>';
-                // echo $result['Pic'];
-                // echo '<img src="img\VLOG2.png"/>';
-                // echo "<td> <img src="/uploads/' alt='MYMAID' /> </td>";
-                // echo "<td> <img src='.$result['Pic'].' alt='MYMAID' /> </td>";
+                $num++;
               }
             }else{
               echo"No records found";
             }
             ?>
         </table>
+
+        <?php
+          //分頁頁碼
+          echo 'Total '.$total.' Collection of Data - On Page '.$page.' - Total '.$pages.' Pages';
+          echo "<br /><a href=?page=1>First Page</a> ";
+          echo "No. ";
+          for( $i=1 ; $i<=$pages ; $i++ ) {
+              if ( $page-3 < $i && $i < $page+3 ) {
+                  echo "<a href=?page=".$i.">".$i."</a> ";
+              }
+          } 
+          echo " Page <a href=?page=".$pages.">LastPage</a><br /><br />";
+        ?>
+
   </center>
 
 <script>
@@ -153,6 +160,5 @@ function checkdelete()
   return Confirm('Are you sure you want to Delete this Record');
 }
 </script>
-
 </body>
 </html>

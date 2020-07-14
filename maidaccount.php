@@ -9,16 +9,19 @@ include("connection.php");
 
 if($_GET && $_GET["ID"]) {
     $id = $_GET["ID"];
+    $date = $_GET["date"];
+    $workStart = $_GET["workStart"];
+    $workEnd = $_GET["workEnd"];
     // echo $id;
 
-    $query = "DELETE FROM employment WHERE userID = '$id' ";
+    $query = "DELETE FROM employment WHERE userID = '$id' and date = '$date' and work_start_hour = '$workStart' and work_end_hour = '$workEnd'";
+    // echo  $query;
     $data = mysqli_query($conn, $query);
     if($data)
     {
         echo "<script>alert('Record has been Deleted from Database')</script>";
         ?>
-            <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://127.0.0.1/MYMAID/maidaccount.php">
-            <!-- <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/maiddetail.php"> -->
+            <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://127.0.0.1/xuan/MYMAID/maidaccount.php">
         <?php
     } else{
         echo "<script>Failed to delete Record from Database</script>";
@@ -36,10 +39,8 @@ if($total != 0)
         $lname = $result["Lastname"];
         $email = $result["Email"];
         $gender = $result["Gender"];
-        
+        $pic = $result["Pic"];
     }
-}else{
-    echo"No records found";
 }
 
 
@@ -51,7 +52,7 @@ if($total != 0)
             <img class="card-bkimg" alt="" src="">
         </div>
         <div class="useravatar">
-            <img alt="" src="img/user.svg">
+            <img alt="" src="<?php echo $pic ?>">
         </div>
         <div class="card-info"> <span class="card-title"> <?php echo $fname." ".$lname; ?> </span>
 
@@ -116,7 +117,7 @@ if($total != 0)
                     include("connection.php");
                     error_reporting(0);
                     
-                    echo $_SESSION['email'];
+                    // echo $_SESSION['email'];
                     $query = "SELECT * FROM `employment` WHERE `maidID` = '".$_SESSION['email']."'";
                     $data = mysqli_query($conn, $query);
                     $total = mysqli_num_rows($data);
@@ -131,14 +132,14 @@ if($total != 0)
                             $workStart = $result['work_start_hour'];
                             $workEnd = $result['work_end_hour'];
 
-                            $query = "SELECT * FROM `user` WHERE `Email` = '".$userID."'";
-                            $data = mysqli_query($conn, $query);
-                            $total = mysqli_num_rows($data);
-                            while($result=mysqli_fetch_assoc($data))
+                            $query = "SELECT * FROM `maid` WHERE `Email` = '".$userID."'";
+                            $data2 = mysqli_query($conn, $query);
+                            echo "<tr>";
+                            // echo $userID;
+                            while($result=mysqli_fetch_assoc($data2))
                             {
                                 echo "
-                                    <tr>
-                                    <td>".($count++)."</td>
+                                    <td>".($count)."</td>
                                 ";
                                 echo '<td><img src="'.$result['Pic'].'" width="100"/></td>';
                                 echo "
@@ -147,15 +148,19 @@ if($total != 0)
                                     <td>".$result['Gender']."</td>
                                 ";
                                 
-                                echo "<td>".$date." from ".$workStart." to ".$workEnd."</td>";
+                                echo "<td><div id = ".$date.">".$date."</div>
+                                     from 
+                                     <div id = ".$workStart.">".$workStart."</div>
+                                     to 
+                                     <div id = ".$workEnd.">".$workEnd."</div>
+                                     </td>";
                                 echo"
-                                    <td><a href = 'maidaccount.php?ID=$userID' onclick='return checkedit()'> Cancel Bocking </td>
-                                    </tr>
+                                    <td><a href = 'maidaccount.php?ID=$userID&date=$date&workStart=$workStart&workEnd=$workEnd'> Cancel Bocking </td>
                                 ";
+                                $count++;
                             }
+                            echo "</tr>";
                         }
-                    } else{
-                        echo"        No Records Found";
                     }
                 ?>
             </table>
