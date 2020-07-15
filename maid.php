@@ -145,14 +145,17 @@
         ?>
         
   </center>
+
 <script>
 function check_delete(value)
 {
   var x = confirm("Are you sure you want to delete?");
-  if (x)
-      return true;
-  else
+  if (x){
+    return true;
+  }
+  else{
     return false;
+  }
 }
 </script>
 </body>

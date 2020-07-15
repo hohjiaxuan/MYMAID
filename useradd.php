@@ -16,7 +16,7 @@
     if($data)
     {
       ?>
-      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/adminwelcome.php">
+      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/user.php">
      <?php
     }else {
       echo "Failed to Updated Record";

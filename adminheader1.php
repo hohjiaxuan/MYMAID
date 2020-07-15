@@ -26,7 +26,7 @@ $email = $_SESSION['email'];
 			<li><a href="maid.php">Maid</a></li>
 			<li><a href="user.php">User</a></li>
 			<li><a href="adminaccount.php">Account</a></li>
-    		<li><a href="signin.php">Logout</a></li>
+    		<li><a href="adminlogout.php">Logout</a></li>
   		</ul>
 		</div>
 	</div>

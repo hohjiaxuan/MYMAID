@@ -4,7 +4,6 @@ error_reporting(0);
 $id=$_GET["ID"];
   if($_GET['submit'])
   {
-  // echo "<script>alert('警告：無法在確認之後跳頁');</script>";
     $id=$_GET["ID"];
     $fname=$_GET["Firstname"];
     $lname=$_GET["Lastname"];

@@ -11,15 +11,13 @@ $id=$_GET["ID"];
     $email=$_GET["Email"];
     $pic=$_GET["Pic"];
     $worktype=$_GET["Worktype"];
-    $sUPDATE `maid` SET `Firstname` = "JIA", `Lastname`= "XUAN", `Gender`= "Female", `Email` = "jia@gmail.com", `Password` = "202cb962ac59075b964b07152d234b70", `Pic` = "img/customer-b.jpg", `Worktype`= "0"
-    $query = "UPDATE `maid` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic', Worktype='$worktype' WHERE ID='$id' ";
-    echo $query;
+    $query = "UPDATE `maid` SET Firstname = '$fname', Lastname = '$lname', Gender = '$gender', Email = '$email', Pic = '$pic', Worktype = '$worktype'  WHERE ID =' $id' ";
     $data = mysqli_query($conn, $query);
     
   if($data)
     {
       ?>
-      <!-- <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/maid.php"> -->
+     <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/maid.php"> 
       <?php
     } else {
       echo "Failed to Updated Record";

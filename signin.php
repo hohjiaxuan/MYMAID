@@ -189,10 +189,10 @@ session_start();
             <div class="container">
                 <div class="row">
                     <div class="col-sm-3">
-                        <h1>SIGNUP</h1>
+                        <h1>SIGN IN</h1>
                         <p>WHAT ARE YOU WAITING FOR???</p>
                         <hr class="mb-3">
-                        <p>JOIN US NOW!!!</p> <br>
+                        <p>BOOK A MAID SERVICE!!!</p> <br>
                         <div id="frmRegistration">
                             <form method="POST" action="login_code.php">
                                 <div class="form-group">

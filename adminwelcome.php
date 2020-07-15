@@ -145,6 +145,7 @@
           echo " Page <a href=?page=".$pages.">LastPage</a><br /><br />";
         ?>
   </center>
+  
 <script>
 function check_delete(value)
 {

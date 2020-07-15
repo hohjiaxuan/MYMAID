@@ -12,7 +12,7 @@
     $password=$_GET["Password"];
     $pic=$_GET["Pic"];
     $worktype=$_GET["Worktype"];
-    $query = "INSERT INTO maid (Firstname,Lastname,Gender,Email,Password,Pic) VALUES ('$fname','$lname','$gender','$email','$password','$pic')";
+    $query = "INSERT INTO maid (Firstname,Lastname,Gender,Email,Password,Pic,Worktype) VALUES ('$fname','$lname','$gender','$email','$password','$pic','$worktype')";
     $data = mysqli_query($conn, $query);
     if($data)
     {
@@ -126,4 +126,3 @@
  </body>
  </html>
 
-?>
