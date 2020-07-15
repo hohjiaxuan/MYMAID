@@ -1,7 +1,7 @@
 <?php
-include("connection.php");
-error_reporting(0);
-$id=$_GET["ID"];
+  include("connection.php");
+  error_reporting(0);
+  $id=$_GET["ID"];
   if($_GET['submit'])
   {
     $id=$_GET["ID"];
@@ -9,20 +9,18 @@ $id=$_GET["ID"];
     $lname=$_GET["Lastname"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
-    $pic=$_GET["Pic"];
+    $pic='img/'.$_GET["Pic"];
     $query = "UPDATE `admin` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
     $data = mysqli_query($conn, $query);
-    
-  if($data)
+    // echo $query;
+    if($data)
     {
-      ?>
-      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/adminwelcome.php">
-      <?php
+      header("Location: adminwelcome.php");
     } else {
       echo "Failed to Updated Record";
     }
   }
- ?>
+?>
 
  <html>
  <head>

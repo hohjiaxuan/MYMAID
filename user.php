@@ -136,7 +136,7 @@
                 <td id='lname$num' >".$result['Lastname']."</td>
                 <td id='gender$num' >".$result['Gender']."</td>
                 <td id='email$num' >".$result['Email']."</td>
-                <td><a href = 'useredit.php?ID=$result[ID]' onclick='return checkedit()'> Edit / Update </td>
+                <td><a href = 'useredit.php?ID=$result[ID]'> Edit / Update </td>
                 <td><a id='$result[ID]' onclick='deleteRecord(this)' > Delete </td>
                 </tr>
               ";

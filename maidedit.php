@@ -9,7 +9,7 @@ $id=$_GET["ID"];
     $lname=$_GET["Lastname"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
-    $pic=$_GET["Pic"];
+    $pic='img/'.$_GET["Pic"];
     $worktype=$_GET["Worktype"] == "Full-Time"?0 : 1;
     $query = "UPDATE `maid` SET Firstname = '$fname', Lastname = '$lname', Gender = '$gender', Email = '$email', Pic = '$pic', Worktype = '$worktype'  WHERE ID =' $id' ";
     $data = mysqli_query($conn, $query);

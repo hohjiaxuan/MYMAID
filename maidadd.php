@@ -16,7 +16,7 @@
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
     $password=md5($_GET["Password"]);
-    $pic=$_GET["Pic"];
+    $pic='img/'.$_GET["Pic"];
     $worktype=$_GET["Worktype"] == "Full-Time"?0 : 1;
     $query = "INSERT INTO maid (Firstname,Lastname,Gender,Email,Password,Pic,Worktype) VALUES ('$fname','$lname','$gender','$email','$password','$pic','$worktype')";
     // echo $query;

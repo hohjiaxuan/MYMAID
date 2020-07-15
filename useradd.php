@@ -10,14 +10,12 @@
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
     $password=$_GET["Password"];
-    $pic=$_GET["Pic"];
+    $pic='img/'.$_GET["Pic"];
     $query = "INSERT INTO user (Firstname,Lastname,Gender,Email,Password,Pic) VALUES ('$fname','$lname','$gender','$email','$password','$pic')";
     $data = mysqli_query($conn, $query);
     if($data)
     {
-      ?>
-      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/user.php">
-     <?php
+      header("Location: user.php");
     }else {
       echo "Failed to Updated Record";
     }
