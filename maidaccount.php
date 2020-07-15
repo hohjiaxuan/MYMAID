@@ -49,7 +49,7 @@ if($total != 0)
 <!DOCTYPE html>
 <html>
 <head>
-  <title> MYMAID | ADMIN </title>
+  <title> MYMAID | MAID </title>
 <style type="text/css">
 </style>
 <SCRIPT SRC="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></SCRIPT>
@@ -90,14 +90,13 @@ if($total != 0)
             let textGender = document.getElementById("textGender");
             let textEmail = document.getElementById("textEmail");
 
-
             if(persion.innerHTML == "Confirm") {
                 console.log("omg");
                 persion.innerHTML = "Edit Profile";
                 fname.style.display = "block";
                 lname.style.display = "block";
                 gender.style.display = "block";
-                email.style.display = "block";]
+                email.style.display = "block";
 
                 textFname.style.display = "none";
                 textLname.style.display = "none";
@@ -120,7 +119,6 @@ if($total != 0)
                 lname.style.display = "none";
                 gender.style.display = "none";
                 email.style.display = "none";
-
 
                 textFname.style.display = "block";
                 textLname.style.display = "block";
@@ -160,6 +158,7 @@ if($total != 0)
                             <td id=\"email\" style=display:block>".$email."</td>
                             <td><input id=\"textEmail\" type=\"text\" value='".$email."' style=display:none></td>
                         </tr>
+                        
                     ";
                 }else {
                     echo"No records found";
@@ -194,7 +193,7 @@ if($total != 0)
                     error_reporting(0);
                     
                     // echo $_SESSION['email'];
-                    $query = "SELECT * FROM `employment` WHERE `maidID` = '".$_SESSION['email']."'";
+                    $query = "SELECT * FROM `employment` WHERE `userID` = '".$_SESSION['email']."'";
                     // echo $query;
                     $data = mysqli_query($conn, $query);
                     $total = mysqli_num_rows($data);
@@ -204,12 +203,12 @@ if($total != 0)
                         $count = 1;
                         while($result=mysqli_fetch_assoc($data))
                         {
-                            $userID = $result['userID'];
+                            $maidID = $result['maidID'];
                             $date = $result['date'];
                             $workStart = $result['work_start_hour'];
                             $workEnd = $result['work_end_hour'];
 
-                            $query = "SELECT * FROM `maid` WHERE `Email` = '".$userID."'";
+                            $query = "SELECT * FROM `maid` WHERE `Email` = '".$maidID."'";
                             $data2 = mysqli_query($conn, $query);
                             $total2 = mysqli_num_rows($data2);
                             // echo $query;
@@ -236,7 +235,7 @@ if($total != 0)
                                      <div id = ".$workEnd.">".$workEnd."</div>
                                      </td>";
                                 echo"
-                                    <td><a href = 'maidaccount.php?ID=$userID&date=$date&workStart=$workStart&workEnd=$workEnd'> Cancel Bocking </td>
+                                    <td><a href = 'useraccount.php?ID=$maidID&date=$date&workStart=$workStart&workEnd=$workEnd'> Cancel Bocking </td>
                                 ";
                                 $count++;
                                 echo "</tr>";

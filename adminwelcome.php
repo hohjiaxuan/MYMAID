@@ -77,6 +77,22 @@
     <br>
     <button name="add" onclick="location.href='adminadd.php'" class="add"> Add </button>
     <br><br><br>
+    <script>
+        function deleteRecord(persion) {
+            // console.log("Are you want to Delete?");
+            if (confirm("Press a button!")) {
+              // console.log(persion.id);
+              // console.log('admindelete.php?ID='+persion.id);
+              $.get({
+                  url: 'admindelete.php?ID='+persion.id, 
+                  success: function(result){
+                    location.reload();
+                  }
+                }
+              );
+            }
+        }
+    </script>
     <table border="3" cellspacing="15">
             <tr>
               <th>No.</th>
@@ -122,7 +138,7 @@
                   <td id='gender$num' >".$result['Gender']."</td>
                   <td id='email$num' >".$result['Email']."</td>
                   <td><a href = 'adminedit.php?ID=$result[ID]' onclick='checkedit()'> Edit / Update </td>
-                  <td><a href = 'admindelete.php?ID=$result[ID]'onclick='check_delete(this)'> Delete </td>
+                  <td><a id='$result[ID]' onclick='deleteRecord(this)' > Delete </td>
                 </tr>
                 ";
                 $num++;
@@ -145,16 +161,5 @@
           echo " Page <a href=?page=".$pages.">LastPage</a><br /><br />";
         ?>
   </center>
-  
-<script>
-function check_delete(value)
-{
-  var x = confirm("Are you sure you want to delete?");
-  if (x)
-      return true;
-  else
-    return false;
-}
-</script>
 </body>
 </html>

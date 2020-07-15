@@ -9,13 +9,13 @@ if($_GET && $_GET['action'] == "EDIT_PROFILE")
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
     
-    $query = "UPDATE user SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email' WHERE `Email`='$id' ";
+    $query = "UPDATE `admin` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email' WHERE `Email`='$id' ";
     $result = mysqli_query($conn, $query) or die("Error");
     
     if($result) 
     {
         echo "sussess";
-        
+          
     } else {
         echo "Failed to Updated Record";
     }

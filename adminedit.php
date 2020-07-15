@@ -10,7 +10,7 @@ $id=$_GET["ID"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
     $pic=$_GET["Pic"];
-    $query = "UPDATE admin SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
+    $query = "UPDATE `admin` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
     $data = mysqli_query($conn, $query);
     
   if($data)
@@ -27,14 +27,13 @@ $id=$_GET["ID"];
  <html>
  <head>
    <title>MYMAID</title>
-
    <style>
       table
       {
-          color: #fffbc1;
-          width:400px;
-          border-radius:20px;
-          table-layout: fixed;
+        color: #fffbc1;
+        width:400px;
+        border-radius:20px;
+        table-layout: fixed;
       }
 
         .button
@@ -73,7 +72,7 @@ $id=$_GET["ID"];
      }
     ?>
   </div>
-  `<h1 style="font-size:80px; font-family:Fonthead Designe; color: #fffbc1; text-align: center;">MYMAID</h1>
+  <h1 style="font-size:80px; font-family:Fonthead Designe; color: #fffbc1; text-align: center;">MYMAID</h1>
    <p style="font-size:32px; font-family:monospace; font-weight: bold; color: #ffcc00; text-align: center;">ADMIN | EDIT/UPDATE PROFILE</p>
    <form action="" method="GET">
      <center>

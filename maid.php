@@ -75,6 +75,22 @@
     <br>
     <button name="add" onclick="location.href='maidadd.php'" class="add"> Add</button>
     <br><br><br>
+    <script>
+        function deleteRecord(persion) {
+            // console.log("Are you want to Delete?");
+            if (confirm("Press a button!")) {
+              // console.log(persion.id);
+              // console.log('admindelete.php?ID='+persion.id);
+              $.get({
+                  url: 'admindelete.php?ID='+persion.id, 
+                  success: function(result){
+                    location.reload();
+                  }
+                }
+              );
+            }
+        }
+    </script>
     <table border="3" cellspacing="9">
             <tr>
               <th>No.</th>
@@ -109,6 +125,7 @@
               $num = 1;
               while($result=mysqli_fetch_assoc($data2))
               {
+                $workType = $result['Worktype']==0?'Full-Time':'Part-Time';
                 echo "
                 <tr>
                   <td id='maidID$num' >".$num."</td>
@@ -118,10 +135,10 @@
                     <td id='fname$num' >".$result['Firstname']."</td>
                     <td id='lname$num' >".$result['Lastname']."</td>
                     <td id='gender$num' >".$result['Gender']."</td>
-                    <td id='worktype$num' >".$result['Worktype']."</td>
+                    <td id='worktype$num' >".$workType."</td>
                     <td id='email$num' >".$result['Email']."</td>
                     <td><a href = 'maidedit.php?ID=$result[ID]' onclick='checkedit()'> Edit / Update </td>
-                    <td><a href = 'maiddelete.php?ID=$result[ID]'onclick='check_delete()'> Delete </td>
+                    <td><a id='$result[ID]' onclick='deleteRecord(this)' > Delete </td>
                     </tr>
                   ";
                 $num++;

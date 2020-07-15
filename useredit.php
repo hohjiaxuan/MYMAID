@@ -10,7 +10,7 @@ $id=$_GET["ID"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
     $pic=$_GET["Pic"];
-    $query = "UPDATE user SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
+    $query = "UPDATE `user` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE ID='$id' ";
     $data = mysqli_query($conn, $query);
     
   if($data)
@@ -27,14 +27,13 @@ $id=$_GET["ID"];
  <html>
  <head>
    <title>MYMAID</title>
-
    <style>
       table
       {
-          color: #fffbc1;
-          width:400px;
-          border-radius:20px;
-          table-layout: fixed;
+        color: #fffbc1;
+        width:400px;
+        border-radius:20px;
+        table-layout: fixed;
       }
 
         .button
@@ -80,27 +79,27 @@ $id=$_GET["ID"];
      <table border="0" bgcolor="#362511 align="center" cellspacing="20">
        <tr>
          <td>ID</td>
-         <td><input type="text" value="<?php echo "$id" ?>" name="id" required></td>
+         <td><input type="text" value="<?php echo "$id" ?>" name="ID" required></td>
        </tr>
        <tr>
          <td>Firstname</td>
-         <td><input type="text" value="<?php echo "$fname" ?>" name="fname" required></td>
+         <td><input type="text" value="<?php echo "$fname" ?>" name="Firstname" required></td>
        </tr>
        <tr>
          <td>Lastname</td>
-         <td><input type="text" value="<?php echo "$lname" ?>" name="lname" required></td>
+         <td><input type="text" value="<?php echo "$lname" ?>" name="Lastname" required></td>
        </tr>
        <tr>
          <td>Gender</td>
-         <td><input type="text" value="<?php echo "$gender" ?>" name="gender" required></td>
+         <td><input type="text" value="<?php echo "$gender" ?>" name="Gender" required></td>
        </tr>
        <tr>
          <td>Email</td>
-         <td><input type="text" value="<?php echo "$email" ?>" name="email" required></td>
+         <td><input type="text" value="<?php echo "$email" ?>" name="Email" required></td>
        </tr>
        <tr>
          <td>Profile Picture</td>
-         <td><input type="file" name="pic" class="form-control" id="pic" accept="image/*" required></td>
+         <td><input type="file" name="Pic" class="form-control" id="pic" accept="image/*" required></td>
        </tr>
        <tr>
          <td colspan="2" align="center"><input type="submit" id="btn" name="submit" value="Update Details"></a></td>
