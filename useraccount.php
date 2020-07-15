@@ -7,7 +7,7 @@ include_once('link.php');
 include_once('userheader1.php');
 include("connection.php");
 
-if($_GET && $_GET["ID"]) {
+if($_GET && $_GET["action"] == 'Cancel Booking') {
     $id = $_GET["ID"];
     $date = $_GET["date"];
     $workStart = $_GET["workStart"];
@@ -20,9 +20,6 @@ if($_GET && $_GET["ID"]) {
     if($data)
     {
         echo "<script>alert('Record has been Deleted from Database')</script>";
-        ?>
-            <!-- <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://127.0.0.1/xuan/MYMAID/useraccount.php"> -->
-        <?php
     } else{
         echo "<script>Failed to delete Record from Database</script>";
     }
@@ -110,7 +107,7 @@ if($total != 0)
                     success: function(result) {
                         console.log(result);
                         if(result == "sussess") {
-                            location.reload();
+                            window.location.href = 'http://localhost/xuan/MYMAID/useraccount.php';
                         }
                     }
                 });
@@ -236,7 +233,7 @@ if($total != 0)
                                      <div id = ".$workEnd.">".$workEnd."</div>
                                      </td>";
                                 echo"
-                                    <td><a href = 'useraccount.php?ID=$maidID&date=$date&workStart=$workStart&workEnd=$workEnd'> Cancel Bocking </td>
+                                    <td><a href = 'useraccount.php?ID=$maidID&date=$date&workStart=$workStart&workEnd=$workEnd&action=Cancel Booking'> Cancel Bocking </td>
                                 ";
                                 $count++;
                                 echo "</tr>";

@@ -83,7 +83,7 @@
               // console.log(persion.id);
               // console.log('admindelete.php?ID='+persion.id);
               $.get({
-                  url: 'admindelete.php?ID='+persion.id, 
+                  url: 'userdelete.php?ID='+persion.id, 
                   success: function(result){
                     location.reload();
                   }

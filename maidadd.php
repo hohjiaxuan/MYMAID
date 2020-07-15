@@ -66,7 +66,13 @@
    <div align=center>
      <?php
      echo "<img src='img/MYMAID.png' alt='MYMAID' width='320' height='285' />";
-     $id=$_GET["ID"];
+      $fname="";
+      $lname="";
+      $gender="";
+      $email="";
+      $pic="";
+      $worktype=0;
+     echo $id;
      $query = "SELECT * FROM `maid` WHERE ID=".$id;
      $data = mysqli_query($conn, $query);
      $total = mysqli_num_rows($data);

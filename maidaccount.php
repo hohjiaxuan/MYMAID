@@ -7,7 +7,7 @@ include_once('link.php');
 include_once('maidheader1.php');
 include("connection.php");
 
-if($_GET && $_GET["ID"]) {
+if($_GET && $_GET["action"] == 'Cancel Booking') {
     $id = $_GET["ID"];
     $date = $_GET["date"];
     $workStart = $_GET["workStart"];
@@ -20,9 +20,6 @@ if($_GET && $_GET["ID"]) {
     if($data)
     {
         echo "<script>alert('Record has been Deleted from Database')</script>";
-        ?>
-            <!-- <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://127.0.0.1/xuan/MYMAID/maidaccount.php"> -->
-        <?php
     } else{
         echo "<script>Failed to delete Record from Database</script>";
     }
@@ -103,13 +100,14 @@ if($total != 0)
                 textGender.style.display = "none";
                 textEmail.style.display = "none";
 
-                console.log('userprofileedit.php?ID='+email.innerHTML+'&Firstname='+textFname.value +'&Lastname='+textFname.value+'&Gender='+textFname.value +'&Email='+textFname.value+"&action=EDIT_PROFILE");
+                console.log('maidprofileedit.php?ID='+email.innerHTML+'&Firstname='+textFname.value +'&Lastname='+textFname.value+'&Gender='+textFname.value +'&Email='+textFname.value+"&action=EDIT_PROFILE");
                 $.get({
-                    url: 'userprofileedit.php?ID='+email.innerHTML+'&Firstname='+textFname.value +'&Lastname='+textLname.value+'&Gender='+textGender.value +'&Email='+textEmail.value+"&action=EDIT_PROFILE", 
+                    url: 'maidprofileedit.php?ID='+email.innerHTML+'&Firstname='+textFname.value +'&Lastname='+textLname.value+'&Gender='+textGender.value +'&Email='+textEmail.value+"&action=EDIT_PROFILE", 
                     success: function(result) {
                         console.log(result);
                         if(result == "sussess") {
-                            location.reload();
+                            // location.reload();
+                            window.location.href = 'http://localhost/xuan/MYMAID/maidaccount.php';
                         }
                     }
                 });
@@ -193,7 +191,7 @@ if($total != 0)
                     error_reporting(0);
                     
                     // echo $_SESSION['email'];
-                    $query = "SELECT * FROM `employment` WHERE `userID` = '".$_SESSION['email']."'";
+                    $query = "SELECT * FROM `employment` WHERE `maidID` = '".$_SESSION['email']."'";
                     // echo $query;
                     $data = mysqli_query($conn, $query);
                     $total = mysqli_num_rows($data);
@@ -203,12 +201,12 @@ if($total != 0)
                         $count = 1;
                         while($result=mysqli_fetch_assoc($data))
                         {
-                            $maidID = $result['maidID'];
+                            $userID = $result['userID'];
                             $date = $result['date'];
                             $workStart = $result['work_start_hour'];
                             $workEnd = $result['work_end_hour'];
 
-                            $query = "SELECT * FROM `maid` WHERE `Email` = '".$maidID."'";
+                            $query = "SELECT * FROM `user` WHERE `Email` = '".$userID."'";
                             $data2 = mysqli_query($conn, $query);
                             $total2 = mysqli_num_rows($data2);
                             // echo $query;
@@ -235,7 +233,7 @@ if($total != 0)
                                      <div id = ".$workEnd.">".$workEnd."</div>
                                      </td>";
                                 echo"
-                                    <td><a href = 'useraccount.php?ID=$maidID&date=$date&workStart=$workStart&workEnd=$workEnd'> Cancel Bocking </td>
+                                <td><a href = 'maidaccount.php?ID=$userID&date=$date&workStart=$workStart&workEnd=$workEnd&action=Cancel Booking'> Cancel Bocking </td>
                                 ";
                                 $count++;
                                 echo "</tr>";
