@@ -59,14 +59,14 @@ if($total != 0)
         <div class="card-background">
             <img class="card-bkimg" alt="" src="">
         </div>
-        <div class="useravatar">
-            <img alt="" src="<?php echo $pic ?>">
+        <div class="useravatar" style="width:950px;">
+            <img alt="" id="pic" src="<?php echo $pic ?>">
         </div>
         <div class="card-info"> <span class="card-title"><?php echo $fname." ".$lname; ?> </span>
 
         </div>
     </div>
-    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" style="width:1000px;" role="group" aria-label="...">
         <div class="btn-group" role="group">
             <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <div class="hidden-xs">Profile</div>
@@ -86,6 +86,15 @@ if($total != 0)
             let textLname = document.getElementById("textLname");
             let textGender = document.getElementById("textGender");
             let textEmail = document.getElementById("textEmail");
+            let inputPic = document.getElementById("inputPic");
+            let textPic = document.getElementById("textPic");
+            let resultPic = "none";
+            let pic = "<?php echo $pic ?>";
+            let img = document.getElementById("pic");
+
+            if(img.src != pic) {
+                resultPic = img.getAttribute("src");
+            }
 
             if(persion.innerHTML == "Confirm") {
                 console.log("omg");
@@ -99,10 +108,15 @@ if($total != 0)
                 textLname.style.display = "none";
                 textGender.style.display = "none";
                 textEmail.style.display = "none";
+                inputPic.style.display = "none";
 
-                console.log('maidprofileedit.php?ID='+email.innerHTML+'&Firstname='+textFname.value +'&Lastname='+textFname.value+'&Gender='+textFname.value +'&Email='+textFname.value+"&action=EDIT_PROFILE");
+                if(img.src != pic) {
+                    textPic.innerHTML = img.getAttribute("src");
+                }
+
+                console.log('maidprofileedit.php?ID='+email.innerHTML+'&Firstname='+textFname.value +'&Lastname='+textLname.value+'&Gender='+textGender.value +'&Email='+textEmail.value+"&Pic="+resultPic+"&action=EDIT_PROFILE");
                 $.get({
-                    url: 'maidprofileedit.php?ID='+email.innerHTML+'&Firstname='+textFname.value +'&Lastname='+textLname.value+'&Gender='+textGender.value +'&Email='+textEmail.value+"&action=EDIT_PROFILE", 
+                    url: 'maidprofileedit.php?ID='+email.innerHTML+'&Firstname='+textFname.value +'&Lastname='+textLname.value+'&Gender='+textGender.value +'&Email='+textEmail.value+"&Pic="+resultPic+"&action=EDIT_PROFILE", 
                     success: function(result) {
                         console.log(result);
                         if(result == "sussess") {
@@ -122,13 +136,18 @@ if($total != 0)
                 textLname.style.display = "block";
                 textGender.style.display = "block";
                 textEmail.style.display = "block";
+                inputPic.style.display = "block";
             }
-
-            
         }
+        function changePic(pic) {
+                console.log(pic)
+                let img = document.getElementById("pic");
+                img.src = 'img/'+pic.files[0].name;
+                console.log('img/'+pic.files[0].name);
+            }
     </script>
 
-    <div class="well">
+    <div class="well" style="width:1000px;">
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
         <table class="table">
@@ -156,7 +175,10 @@ if($total != 0)
                             <td id=\"email\" style=display:block>".$email."</td>
                             <td><input id=\"textEmail\" type=\"text\" value='".$email."' style=display:none></td>
                         </tr>
-                        
+                        <tr>
+                            <td>Profile Picture</td>
+                            <td><div> <div id=\"textPic\" style=\"float:left;\"> ".$pic." &nbsp;&nbsp;&nbsp;</div>  <div  style=\"float:left; \" > <input onchange=\"changePic(this)\" id=\"inputPic\" style=\"display:none;\" type=\"file\" accept=\"image/*\" value=\"'$pic'\"> </div></div></td>
+                        </tr>
                     ";
                 }else {
                     echo"No records found";

@@ -15,7 +15,7 @@ $email = $_SESSION['email'];
 		echo "<img src='img/MYMAID.png' alt='MYMAID' width='50' height='45' />";
 		?>
 		<div class="navbar-header">
-			<a href="index.html" class="navbar-brand">MY MAID</a>
+			<a href="maidaccount.php" class="navbar-brand">MY MAID</a>
 		</div>
 
 		<div class="dropdown navbar-right" id="right">

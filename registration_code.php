@@ -11,7 +11,7 @@ $gender = $_POST['gender'];
 $user_type = $_POST['user_type'];
 $email = $_POST['email'];
 $pwd = $_POST['password'];
-$pic = $_POST['pic'];
+$pic = 'img/'.$_POST['pic'];
 $password = MD5($pwd);
 
 if($user_type == 'Customer') {

@@ -8,8 +8,13 @@ if($_GET && $_GET['action'] == "EDIT_PROFILE")
     $lname=$_GET["Lastname"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
+    $pic= $_GET['Pic'];
     
-    $query = "UPDATE `maid` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email' WHERE `Email`='$id' ";
+    if($pic != 'none') {
+        $query = "UPDATE `maid` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email', Pic='$pic' WHERE `Email`='$id' ";
+    } else {
+        $query = "UPDATE `maid` SET Firstname='$fname', Lastname='$lname', Gender='$gender', Email='$email' WHERE `Email`='$id' ";
+    }
     $result = mysqli_query($conn, $query) or die("Error");
     
     if($result) 

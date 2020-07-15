@@ -120,40 +120,16 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="inner-header">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2">
-                        <div class="logo">
-                            <a href="./index.html">
-                                <img src="img/MYMAID.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search">
-                            <div class="input-group">
-                                <input type="text" placeholder="What are you searching for?">
-                                <button type="button"><i class="ti-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div style="text-align:center;">
+                <a href="./index.html">
+                    <img src="img/MYMAID.png" alt="">
+                </a>
+        </div><br>
         <div class="nav-item">
-            <div class="container">
+            <div style="text-align:center;">
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="./index.html">Services</a>
-                            <ul class="dropdown">
-                                <li><a href="./full-time.html">Full-Time</a></li>
-                                <li><a href="./part-time.html">Part-Time</a></li>
-                            </ul>
-                        </li>
                         <li><a href="./about.html">About MYMAID</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                         <li><a href="./faq.html">FAQ</a></li>
@@ -216,7 +192,7 @@ session_start();
                                         <button type="submit" name="login" class="btn btn-primary" style="width:285px; height:50px;">Login</button>
                                     </div> <br>
                                 </div>
-                                <p>Don't have an account? <br> <a> <a href="sign-up.php"> Sign Up Now</a> </p>
+                                <p>Don't have an account? <br> <a> <a href="signup.php"> Sign Up Now</a> </p>
                             </form>
                         </div>
                     </div>
@@ -224,11 +200,6 @@ session_start();
             </div>
         <!-- </form> -->
     </div>
-
-
-
-
-
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">

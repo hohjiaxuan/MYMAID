@@ -412,12 +412,14 @@ ol {
 	margin-left: 15px;
 }
 
+/*
 .inner-header {
 	padding: 39px 0;
 }
+*/
 
 .inner-header .logo {
-	padding: 12px 0;
+    text-align:center;
 }
 
 .inner-header .logo a {
@@ -653,6 +655,7 @@ ol {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+    text-align:center;
 }
 
 .nav-item .nav-depart {
