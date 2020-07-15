@@ -137,7 +137,7 @@
                     <td id='gender$num' >".$result['Gender']."</td>
                     <td id='worktype$num' >".$workType."</td>
                     <td id='email$num' >".$result['Email']."</td>
-                    <td><a href = 'maidedit.php?ID=$result[ID]' onclick='checkedit()'> Edit / Update </td>
+                    <td><a href = 'maidedit.php?ID=$result[ID]'> Edit / Update </td>
                     <td><a id='$result[ID]' onclick='deleteRecord(this)' > Delete </td>
                     </tr>
                   ";

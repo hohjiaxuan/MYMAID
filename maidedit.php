@@ -10,15 +10,13 @@ $id=$_GET["ID"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
     $pic=$_GET["Pic"];
-    $worktype=$_GET["Worktype"];
+    $worktype=$_GET["Worktype"] == "Full-Time"?0 : 1;
     $query = "UPDATE `maid` SET Firstname = '$fname', Lastname = '$lname', Gender = '$gender', Email = '$email', Pic = '$pic', Worktype = '$worktype'  WHERE ID =' $id' ";
     $data = mysqli_query($conn, $query);
     
-  if($data)
+    if($data)
     {
-      ?>
-     <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/maid.php"> 
-      <?php
+      header("Location: maid.php");
     } else {
       echo "Failed to Updated Record";
     }
@@ -91,7 +89,10 @@ $id=$_GET["ID"];
        </tr>
        <tr>
          <td>Work Type</td>
-         <td><input type="text" value="<?php echo "$worktype" ?>" name="Worktype" required></td>
+            <td><select id="workType" name="Worktype">
+                <option value="Full-Time">Full-Time</option>
+                <option value="Part-Time">Part-Time</option>
+            </select></td>
        </tr>
        <tr>
          <td>Email</td>
@@ -108,5 +109,15 @@ $id=$_GET["ID"];
      <label style="font-weight:bold; font-size:30px;"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>"> BACK </a></label>
    </center>
    </form>
+   <script> 
+      let workType = "<?php echo $worktype ?>"
+      let e = document.getElementById("workType");
+      console.log(e.options[e.selectedIndex].value)
+      if(workType == 0) {
+        e.selectedIndex=0;
+      } else {
+        e.selectedIndex=1;
+      }
+   </script>
  </body>
  </html>

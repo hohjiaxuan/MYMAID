@@ -1,6 +1,12 @@
 <?php
   include("connection.php");
   error_reporting(0);
+  session_start();
+  $email = $_SESSION['email'];
+  $_SESSION['email'] = $email;
+  // echo session_id().' ';
+  
+
   $id=$_GET["ID"];
   if($_GET['submit'])
   {
@@ -9,16 +15,17 @@
     $lname=$_GET["Lastname"];
     $gender=$_GET["Gender"];
     $email=$_GET["Email"];
-    $password=$_GET["Password"];
+    $password=md5($_GET["Password"]);
     $pic=$_GET["Pic"];
-    $worktype=$_GET["Worktype"];
+    $worktype=$_GET["Worktype"] == "Full-Time"?0 : 1;
     $query = "INSERT INTO maid (Firstname,Lastname,Gender,Email,Password,Pic,Worktype) VALUES ('$fname','$lname','$gender','$email','$password','$pic','$worktype')";
+    // echo $query;
     $data = mysqli_query($conn, $query);
+    // echo $_SESSION['email'];
+    // echo session_id();
     if($data)
     {
-      ?>
-      <META HTTP-EQUIV="Refresh" CONTENT = "0; URL=http://localhost/xuan/MYMAID/maid.php">
-     <?php
+      header("Location:maid.php");
     }else {
       echo "Failed to Updated Record";
     }
