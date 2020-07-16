@@ -197,8 +197,8 @@ if($total != 0)
 
     
     <div class="tab-pane fade in active" id="tab2" style="height:450px; width:850px; text-align:center;">
-            <table border="2" cellspacing="25" style="table-layout:fixed; text-align:center; height:100px; width:850px; " >
-                <tr>
+            <table border="2" cellspacing="30" style="table-layout:fixed; text-align:center; height:250px; width:1000px; " >
+                <tr style="background-color:#051094; color:white; font-weight:bold; font-size:20px; text-align:center; height:100px;">
                     <th>No.</th>
                     <th>Profile Picture</th>
                     <th>Firstname</th>

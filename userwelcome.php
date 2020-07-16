@@ -71,11 +71,9 @@
     <?php
     echo "<img src='img/MYMAID.png' alt='MYMAID' />";
     ?>
-
     <h1 style="font-family:Fonthead Designe; color: #fffbc1;">MAIDS OF MYMAID</h1>
     <p style="font-family:monospace; color: #990066;">Booking maid services!!!</p>
-    <br>
-    <br>
+    <br><br>
     <table border=3" cellspacing="9">
             <tr>
               <th>No.</th>
@@ -94,17 +92,16 @@
             error_reporting(0);
             $query = "SELECT * FROM maid ";
             $data = mysqli_query($conn, $query);
-
             $total = mysqli_num_rows($data);
-            $per = 5; //每頁顯示項目數量
+            $per = 5;
             $pages = ceil($total/$per);
 
-            if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-              $page=1; //則在此設定起始頁數
+            if (!isset($_GET["page"])){ 
+              $page=1; 
             } else {
-                $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
+                $page = intval($_GET["page"]); 
             }
-            $start = ($page-1)*$per; //每一頁開始的資料序號
+            $start = ($page-1)*$per;
             $data2 = mysqli_query($conn,$query.' LIMIT '.$start.', '.$per) or die("Error");
 
             if($total != 0)
@@ -112,7 +109,7 @@
               $num = 1;
               while($result=mysqli_fetch_assoc($data2))
               {
-
+                $workType = $result['Worktype']==0?'Full-Time':'Part-Time';
                 echo "
                   <tr>
                     <td id='email$num' style='display:none'>".$result['Email']."</td>
@@ -123,7 +120,7 @@
                   <td id='fname$num' >".$result['Firstname']."</td>
                   <td id='lname$num' >".$result['Lastname']."</td>
                   <td id='gender$num' >".$result['Gender']."</td>
-                  <td id='worktype$num' >".$result['Worktype']."</td>
+                  <td id='worktype$num' >".$workType."</td>
                   ";
                   echo '<td>
                         <input id="date'.$num.'" type="date"/><br>
